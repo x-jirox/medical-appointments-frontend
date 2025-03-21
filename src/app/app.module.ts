@@ -8,6 +8,11 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { PageServiceComponent } from './pages/page-service/page-service.component';
+import { PatientDashboardComponent } from './users/patient/patient-dashboard/patient-dashboard.component';
+import { DoctorDashboardComponent } from './users/doctor/doctor-dashboard/doctor-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,12 @@ import { HeaderComponent } from './layout/header/header.component';
     RegisterComponent,
     HomeComponent,
     NotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    AboutUsComponent,
+    ContactComponent,
+    PageServiceComponent,
+    PatientDashboardComponent,
+    DoctorDashboardComponent,
   ],
   imports: [
     BrowserModule,
