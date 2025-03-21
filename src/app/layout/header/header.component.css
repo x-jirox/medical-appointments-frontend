@@ -1,0 +1,69 @@
+/* ===========================
+   ESTILOS GENERALES
+   =========================== */
+
+/* Contenedor principal del encabezado */
+.container {
+    display: flex; /* Usa flexbox para organizar los elementos en una fila */
+    justify-content: space-between; /* Distribuye los elementos en los extremos */
+    align-items: center; /* Alinea verticalmente los elementos */
+    background-color: black; /* Color de fondo negro */
+    color: aliceblue; /* Color del texto */
+    padding: 30px; /* Espaciado interno uniforme */
+}
+
+/* ===========================
+   LOGO
+   =========================== */
+
+/* Estilos para el logo de la aplicación */
+.logo {
+    font-size: 1rem; /* Tamaño de fuente grande */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* ===========================
+   MENÚ DE NAVEGACIÓN PRINCIPAL
+   =========================== */
+
+/* Contenedor del menú principal */
+.nav-menu {
+    display: flex; /* Organiza los enlaces en una fila */
+    gap: 20px; /* Espaciado entre los elementos del menú */
+}
+
+/* Estilos para los enlaces del menú principal */
+.nav-link {
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    color: aliceblue; /* Color del texto */
+    font-weight: bold; /* Negrita para mejor visibilidad */
+    transition: color 0.3s ease; /* Transición suave en el color */
+}
+
+/* Efecto hover en los enlaces del menú principal */
+.nav-link:hover {
+    color: lightgray; /* Cambia el color cuando el usuario pasa el mouse */
+}
+
+/* ===========================
+   MENÚ DE AUTENTICACIÓN (LOGIN & REGISTER)
+   =========================== */
+
+/* Contenedor del menú de autenticación */
+.nav-authentication {
+    display: flex; /* Organiza los enlaces en una fila */
+    gap: 20px; /* Espaciado entre los elementos */
+}
+
+/* Estilos para los enlaces de autenticación (Login y Register) */
+.auth-link {
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    color: aliceblue; /* Mantiene el color del texto */
+    font-weight: bold; /* Hace el texto más legible con negrita */
+    transition: color 0.3s ease; /* Agrega una transición suave al cambiar de color */
+}
+
+/* Efecto hover para los enlaces de autenticación */
+.auth-link:hover {
+    color: lightgray; /* Cambia el color cuando el usuario pasa el mouse */
+}
