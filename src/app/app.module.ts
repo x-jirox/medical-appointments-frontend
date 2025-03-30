@@ -13,6 +13,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { PageServiceComponent } from './pages/page-service/page-service.component';
 import { PatientDashboardComponent } from './users/patient/patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './users/doctor/doctor-dashboard/doctor-dashboard.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DoctorDashboardComponent } from './users/doctor/doctor-dashboard/doctor
     PageServiceComponent,
     PatientDashboardComponent,
     DoctorDashboardComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
