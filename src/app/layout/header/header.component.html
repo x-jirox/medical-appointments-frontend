@@ -10,17 +10,17 @@
     <!-- Menú de navegación -->
     <nav class="nav" [ngClass]="{'is-open': isMenuOpen}">
       <ul class="nav-links">
-        <li><a href="#" class="nav-link">Home</a></li>
-        <li><a href="#" class="nav-link">About Us</a></li>
-        <li><a href="#" class="nav-link">Contact</a></li>
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/about-us" class="nav-link">About Us</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
         <!-- Agregar el enlace de Cuenta al menú en pantallas pequeñas -->
-        <li class="auth-link-mobile" *ngIf="isMenuOpen"><a href="#" class="nav-link">Account</a></li>
+        <li class="auth-link-mobile" *ngIf="isMenuOpen"><a href="/acount" class="nav-link">Account</a></li>
       </ul>
     </nav>
 
     <!-- Botón de cuenta en pantallas grandes -->
     <div class="auth">
-      <a href="#" class="auth-link">Account</a>
+      <a href="/acount" class="auth-link">Account</a>
     </div>
   </div>
 </header>
