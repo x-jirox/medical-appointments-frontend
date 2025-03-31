@@ -1,106 +1,143 @@
 .header {
-    background-color: #25242400;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-    transition: background-color 0.3s ease;
-    
-    &.scrolled {
-      background-color: #222121e9;
-    }
-  
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-  
-    .logo {
-      color: #ffffff;
-      font-size: 1.5rem; /* Tamaño mayor para el logo */
-      font-weight: bold;
-    }
-  
-    .nav {
-      .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 25px; /* Aumento el espacio entre los links */
-        font-weight: bold;
-        
-        .nav-link {
-          text-decoration: none;
-          color: #d5d3d3;
-          font-size: 1.3rem; /* Aumento el tamaño del texto */
-          padding: 8px 12px;
-          transition: color 0.3s;
-  
-          &:hover {
-            color: #ffffff;
-          }
-        }
-      }
-    }
-  
-    .auth {
-      display: flex;
-      gap: 20px;
-  
-      .auth-link {
-        text-decoration: none;
-        color: #ffffff;
-        font-size: 1.2rem; /* Aumento el tamaño del texto */
-        padding: 8px 12px;
-        border: 1px solid #f5f5f5;
-        border-radius: 5px;
-        transition: all 0.3s;
-  
-        &:hover {
-          background-color: #003B5C;
-          color: #FFFFFF;
-          border-color: #FF6F61;
-        }
-      }
-    }
-  
-    // Responsividad
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-      }
-  
-      .nav-links {
-        flex-direction: column;
-        gap: 15px;
-        padding: 10px 0;
-      }
-  
-      .auth {
-        width: 100%;
-        justify-content: space-between;
-      }
-    }
-  
-    @media (max-width: 480px) {
-      .logo {
-        font-size: 1.8rem;
-      }
-  
-      .nav-links {
-        gap: 15px;
-      }
-  
-      .auth {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+  background-color: #25242400;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.header.scrolled {
+  background-color: #222121e9;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Estilos del logo */
+.logo {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Estilos del menú centrado */
+.nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  font-weight: bold;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #d5d3d3;
+  font-size: 1.3rem;
+  padding: 8px 12px;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+/* Botón Account alineado a la derecha */
+.auth {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.auth-link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.auth-link:hover {
+  background-color: #003B5C;
+  color: #FFFFFF;
+  border-color: #FF6F61;
+}
+
+/* Menú hamburguesa */
+.burger {
+  display: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+/* Estilos para móviles */
+@media (max-width: 768px) {
+  .header {
+    background-color: #222121b4;
   }
-  
+
+  .header.scrolled {
+    background-color: #000000e3;
+  }
+
+  .container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* Ocultar el menú en móvil */
+  .nav {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: #000000e2;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    padding: 350px 0;
+    z-index: -1;
+  }
+
+  .nav.is-open {
+    display: flex;
+    /* Mostrar menú al hacer clic */
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Ocultar el botón de cuenta en móvil */
+  .auth {
+    display: none;
+  }
+
+  /* Mostrar botón del menú hamburguesa */
+  .burger {
+    display: block;
+  }
+
+  /* Mostrar el botón de cuenta en el menú móvil */
+  .auth-link-mobile {
+    display: block;
+    padding: 8px 12px;
+    text-align: center;
+  }
+}

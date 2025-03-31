@@ -1,199 +1,203 @@
-/*organizar el css de hme y header*/
-  h1, h2, h3, h4 {
-    color: #183749; /* Títulos con color principal */
-  }
-  
-  p {
-    color: #000000;
-    line-height: 1.6;
-    font-size: 1rem;
-  }
-  .subtitle{
-    color: #ffffff;
-    line-height: 1.6;
-    font-size: 1rem;
-  }
-  
-  /* Hero Section */
-  .hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 60px;
-    background: #aa3126; /* Fondo vibrante */
-    color: white;
-    border-bottom: 5px solid #003B5C;
+/* ----------- Typography ----------- */
 
+h1, h2, h3, h4 {
+  color: #183749; /* Títulos con color principal */
+}
+
+p {
+  color: #000000;
+  line-height: 1.6;
+  font-size: 1.3rem;
+}
+
+.subtitle {
+  color: #ffffff;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* ----------- Hero Section ----------- */
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  background: #aa3126; /* Fondo vibrante */
+  color: white;
+  border-bottom: 5px solid #003B5C;
+}
+
+.hero-content {
+  max-width: 50%;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-content span {
+  color: #FFFFFF; /* Color de énfasis */
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  padding: 12px 24px;
+  background-color: #12374c; /* Fondo oscuro */
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 25px; /* Bordes más suaves */
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #003B5C; /* Hover con color cálido */
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* ----------- Services Section ----------- */
+
+.services {
+  padding: 60px;
+  background: #FFFFFF; /* Fondo blanco para claridad */
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.services h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #003B5C;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.service {
+  background: #F4F7FA; /* Fondo claro y suave */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.service:hover {
+  transform: translateY(-5px); /* Efecto hover más suave */
+}
+
+.service figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.service h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #003B5C;
+}
+
+.service p {
+  font-size: 1.3rem;
+  color: #7F8C8D;
+}
+
+/* ----------- Testimonials Section ----------- */
+
+.testimonials {
+  background: #F4F7FA; /* Fondo neutro */
+  padding: 60px;
+  text-align: center;
+  color: #003B5C;
+  border-top: 4px solid #FF6F61; /* Línea divisoria para elegancia */
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.testimonial {
+  background: #FFFFFF;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: scale(1.05); /* Efecto hover de testimonio */
+}
+
+.testimonial p {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.testimonial h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #FF6F61; /* Nombre del cliente con un color cálido */
+}
+
+/* ----------- Responsive Styles ----------- */
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
   }
-  
+
   .hero-content {
-    max-width: 50%;
-  }
-  
-  .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
-  
-  .hero-content span {
-    color: #FFFFFF; /* Color de énfasis */
-  }
-  
-  .hero-content p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-  }
-  
-  .btn-primary {
-    padding: 12px 24px;
-    background-color: #12374c; /* Fondo oscuro */
-    color: #FFFFFF;
-    text-decoration: none;
-    border-radius: 25px; /* Bordes más suaves */
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-primary:hover {
-    background-color: #003B5C; /* Hover con color cálido */
-  }
-  
-  .hero-image img {
     max-width: 100%;
-    height: auto;
-    border-radius: 10px;
   }
-  
-  /* Services Section */
-  .services {
-    padding: 60px;
-    background: #FFFFFF; /* Fondo blanco para claridad */
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-  
-  .services h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #003B5C;
-  }
-  
+
   .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: 1fr;
   }
-  
-  .service {
-    background: #F4F7FA; /* Fondo claro y suave */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .service:hover {
-    transform: translateY(-5px); /* Efecto hover más suave */
-  }
-  
-  .service figure img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .service h3 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-    color: #003B5C;
-  }
-  
-  .service p {
-    font-size: 1rem;
-    color: #7F8C8D;
-  }
-  
-  /* Testimonials Section */
-  .testimonials {
-    background: #F4F7FA; /* Fondo neutro */
-    padding: 60px;
-    text-align: center;
-    color: #003B5C;
-    border-top: 4px solid #FF6F61; /* Línea divisoria para elegancia */
-  }
-  
-  .testimonials h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
+
   .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: 1fr;
   }
-  
-  .testimonial {
-    background: #FFFFFF;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
   }
-  
-  .testimonial:hover {
-    transform: scale(1.05); /* Efecto hover de testimonio */
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 10px 20px;
   }
-  
-  .testimonial p {
-    font-style: italic;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+
+  .service h3 {
+    font-size: 1.3rem;
   }
-  
-  .testimonial h4 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #FF6F61; /* Nombre del cliente con un color cálido */
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .hero {
-      flex-direction: column;
-      text-align: center;
-      padding: 40px;
-    }
-  
-    .hero-content {
-      max-width: 100%;
-    }
-  
-    .services-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .testimonial-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .hero-content h1 {
-      font-size: 2.2rem;
-    }
-  
-    .btn-primary {
-      font-size: 1rem;
-      padding: 10px 20px;
-    }
-  
-    .service h3 {
-      font-size: 1.3rem;
-    }
-  }
-  
+}

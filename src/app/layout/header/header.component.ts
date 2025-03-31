@@ -7,9 +7,14 @@ import { Component, HostListener } from '@angular/core';
 export class HeaderComponent {
     // Usamos HostListener para escuchar el evento de scroll
     isScrolled = false;
+    isMenuOpen: boolean = false;
 
     @HostListener('window:scroll', [])
     onWindowScroll() {
       this.isScrolled = window.scrollY > 50;
+    }
+
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
     }
 }

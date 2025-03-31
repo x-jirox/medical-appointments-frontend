@@ -1,18 +1,29 @@
 <header [ngClass]="{'scrolled': isScrolled}" class="header">
-    <div class="container">
-      <h1 class="logo">Medical Appointment</h1>
-      <nav class="nav">
-        <ul class="nav-links">
-          <li><a routerLink="/" class="nav-link">Home</a></li>
-          <li><a routerLink="/page-service" class="nav-link">Services</a></li>
-          <li><a routerLink="/about-us" class="nav-link">About Us</a></li>
-          <li><a routerLink="/contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-      <nav class="auth">
-        <a routerLink="/login" class="auth-link">Login</a>
-        <a routerLink="/register" class="auth-link">Register</a>
-      </nav>
+  <div class="container">
+    <h2 class="logo">Medical Appointment</h2>
+
+    <!-- Botón del menú hamburguesa -->
+    <div class="burger" (click)="toggleMenu()">
+      <i class="fa-solid" [ngClass]="isMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
     </div>
-  </header>
-  
+
+    <!-- Menú de navegación -->
+    <nav class="nav" [ngClass]="{'is-open': isMenuOpen}">
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link">Home</a></li>
+        <li><a href="#" class="nav-link">About Us</a></li>
+        <li><a href="#" class="nav-link">Contact</a></li>
+        <!-- Agregar el enlace de Cuenta al menú en pantallas pequeñas -->
+        <li class="auth-link-mobile" *ngIf="isMenuOpen"><a href="#" class="nav-link">Account</a></li>
+      </ul>
+    </nav>
+
+    <!-- Botón de cuenta en pantallas grandes -->
+    <div class="auth">
+      <a href="#" class="auth-link">Account</a>
+    </div>
+  </div>
+</header>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous" referrerpolicy="no-referrer" />

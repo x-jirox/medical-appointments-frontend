@@ -1,0 +1,227 @@
+/* ----------- Typography ----------- */
+
+h1,
+h2,
+h3 {
+  color: #003B5C;
+}
+
+p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.info {
+  color: #ffffff;
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+/* ----------- Hero Section (Contacto) ----------- */
+
+.contact-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px;
+  background-color: #aa3126;
+  color: white;
+  border-bottom: 4px solid #003B5C;
+}
+
+.contact-content {
+  max-width: 50%;
+}
+
+.contact-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.contact-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* ----------- Información de Contacto ----------- */
+
+.contact-info {
+  display: flex;
+  justify-content: space-around;
+  padding: 60px;
+  text-align: center;
+}
+
+.info-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h3 {
+  font-size: 1.5rem;
+  color: #003B5C;
+}
+
+.info-card p {
+  font-size: 1.1rem;
+  color: #7F8C8D;
+}
+
+/* ----------- Formulario de Contacto ----------- */
+
+.contact-form {
+  text-align: center;
+  padding: 60px;
+  background: #ffffff;
+}
+
+.contact-form form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contact-form h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #003B5C;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #003B5C;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #CCC;
+  font-size: 1rem;
+}
+
+.input-group textarea {
+  height: 150px;
+}
+
+.btn-primary {
+  background: #FF6F61;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #E65C50;
+}
+
+/* ----------- Mapa ----------- */
+
+.contact-map {
+  text-align: center;
+  padding: 60px;
+  background: #F4F7FA;
+  border-top: 4px solid #FF6F61;
+}
+
+.contact-map h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #003B5C;
+}
+
+/* ----------- Redes Sociales ----------- */
+
+.contact-social {
+  text-align: center;
+  padding: 60px;
+}
+
+.contact-social h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #003B5C;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons i {
+  font-size: 2.5rem;
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+.social-icons i:hover {
+  color: #FF6F61;
+}
+
+/* ----------- Responsive Design ----------- */
+
+@media (max-width: 768px) {
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .contact-form form {
+    width: 90%;
+  }
+
+  .social-icons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-hero {
+    flex-direction: column;
+    padding: 40px;
+  }
+
+  .contact-content {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .info-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .contact-form h2 {
+    font-size: 1.8rem;
+  }
+
+  .btn-primary {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+  }
+}
