@@ -7,7 +7,9 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { PatientDashboardComponent } from './users/patient/patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './users/doctor/doctor-dashboard/doctor-dashboard.component';
-import { AcoutnComponent } from './auth/acoutn/acoutn.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
 
 
 const routes: Routes = [
@@ -18,7 +20,9 @@ const routes: Routes = [
   {path: 'contact', component: ContactComponent}, // Contacto
   {path: 'dashboard-patient', component: PatientDashboardComponent}, // Pagina de inicio paciente
   {path: 'dashboard-doctor', component: DoctorDashboardComponent}, // Pagina de inicio doctor
-  {path: 'acount', component: AcoutnComponent}, // Pagina de inicio doctor
+  {path: 'sign-in', component: SignInComponent}, 
+  {path: 'sign-up', component: SignUpComponent}, 
+  {path: 'recover-password', component: RecoverPasswordComponent}, 
 
   //Manejo de errores
   {path: '404', component: NotFoundComponent}, // Página 404
