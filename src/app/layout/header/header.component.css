@@ -90,7 +90,7 @@
 /* Estilos para móviles */
 @media (max-width: 768px) {
   .header {
-    background-color: #22212100;
+    background-color: #2221217c;
   }
 
   .header.scrolled {
