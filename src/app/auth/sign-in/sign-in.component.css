@@ -122,10 +122,7 @@ button:hover {
     width: 100%;
     margin-top: 60px;
   }
-  .container {
-    min-height: auto;  /* Eliminar el min-height en pantallas pequeñas */
-    height: auto;  /* Asegurarse de que la altura se ajuste al contenido */
-  }
+  
 
   h2 {
     font-size: 1.8rem;
