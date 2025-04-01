@@ -1,7 +1,11 @@
 /* ----------- Typography ----------- */
 
-h1, h2, h3, h4 {
-  color: #183749; /* Títulos con color principal */
+h1,
+h2,
+h3,
+h4 {
+  color: #183749;
+  /* Títulos con color principal */
 }
 
 p {
@@ -23,13 +27,15 @@ p {
   justify-content: space-between;
   align-items: center;
   padding: 60px;
-  background: #aa3126; /* Fondo vibrante */
+  background: #aa3126;
+  /* Fondo vibrante */
   color: white;
   border-bottom: 5px solid #003B5C;
 }
 
 .hero-content {
   max-width: 50%;
+
 }
 
 .hero-content h1 {
@@ -39,7 +45,8 @@ p {
 }
 
 .hero-content span {
-  color: #FFFFFF; /* Color de énfasis */
+  color: #FFFFFF;
+  /* Color de énfasis */
 }
 
 .hero-content p {
@@ -49,16 +56,19 @@ p {
 
 .btn-primary {
   padding: 12px 24px;
-  background-color: #12374c; /* Fondo oscuro */
+  background-color: #12374c;
+  /* Fondo oscuro */
   color: #FFFFFF;
   text-decoration: none;
-  border-radius: 25px; /* Bordes más suaves */
+  border-radius: 25px;
+  /* Bordes más suaves */
   font-size: 1.1rem;
   transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: #003B5C; /* Hover con color cálido */
+  background-color: #003B5C;
+  /* Hover con color cálido */
 }
 
 .hero-image img {
@@ -71,7 +81,8 @@ p {
 
 .services {
   padding: 60px;
-  background: #FFFFFF; /* Fondo blanco para claridad */
+  background: #FFFFFF;
+  /* Fondo blanco para claridad */
   text-align: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -90,7 +101,8 @@ p {
 }
 
 .service {
-  background: #F4F7FA; /* Fondo claro y suave */
+  background: #F4F7FA;
+  /* Fondo claro y suave */
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
@@ -98,7 +110,8 @@ p {
 }
 
 .service:hover {
-  transform: translateY(-5px); /* Efecto hover más suave */
+  transform: translateY(-5px);
+  /* Efecto hover más suave */
 }
 
 .service figure img {
@@ -122,11 +135,13 @@ p {
 /* ----------- Testimonials Section ----------- */
 
 .testimonials {
-  background: #F4F7FA; /* Fondo neutro */
+  background: #F4F7FA;
+  /* Fondo neutro */
   padding: 60px;
   text-align: center;
   color: #003B5C;
-  border-top: 4px solid #FF6F61; /* Línea divisoria para elegancia */
+  border-top: 4px solid #FF6F61;
+  /* Línea divisoria para elegancia */
 }
 
 .testimonials h2 {
@@ -150,7 +165,8 @@ p {
 }
 
 .testimonial:hover {
-  transform: scale(1.05); /* Efecto hover de testimonio */
+  transform: scale(1.05);
+  /* Efecto hover de testimonio */
 }
 
 .testimonial p {
@@ -162,7 +178,8 @@ p {
 .testimonial h4 {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #FF6F61; /* Nombre del cliente con un color cálido */
+  color: #FF6F61;
+  /* Nombre del cliente con un color cálido */
 }
 
 /* ----------- Responsive Styles ----------- */
@@ -176,6 +193,7 @@ p {
 
   .hero-content {
     max-width: 100%;
+    margin-top: 50px;
   }
 
   .services-grid {
