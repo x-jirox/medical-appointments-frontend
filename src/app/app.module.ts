@@ -34,7 +34,8 @@ import { RecoverPasswordComponent } from './auth/recover-password/recover-passwo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
