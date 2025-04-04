@@ -1,0 +1,115 @@
+<button class="sidebar-menu-button">
+  <span class="material-symbols-rounded">menu</span>
+</button>
+
+<aside class="sidebar">
+  <!-- Sidebar Header -->
+  <header class="sidebar-header">
+    <a href="#" class="header-logo">
+      <img src="../../../assets/img/dr1.png" alt="CodingNepal" />
+    </a>
+    <button class="sidebar-toggler">
+      <span class="material-symbols-rounded">chevron_left</span>
+    </button>
+  </header>
+
+  <nav class="sidebar-nav">
+    <!-- Primary Top Nav -->
+    <ul class="nav-list primary-nav">
+      <!-- Dashboard (aparece solo para admin, doctor, paciente) -->
+      <li class="nav-item" *ngIf="userRole === 'admin' || userRole === 'doctor' || userRole === 'patient'">
+        <a href="#" class="nav-link">
+          <span class="material-symbols-rounded">dashboard</span>
+          <span class="nav-label">Inicio</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Inicio</a></li>
+        </ul>
+      </li>
+
+      <!-- Services (aparece solo para doctor) -->
+      <li class="nav-item dropdown-container" *ngIf="userRole === 'doctor'">
+        <a href="#" class="nav-link dropdown-toggle">
+          <span class="material-symbols-rounded">calendar_today</span>
+          <span class="nav-label">Services</span>
+          <span class="dropdown-icon material-symbols-rounded">keyboard_arrow_down</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Services</a></li>
+          <li class="nav-item"><a href="#" class="nav-link dropdown-link">Consultations</a></li>
+          <li class="nav-item"><a href="#" class="nav-link dropdown-link">Medical Records</a></li>
+        </ul>
+      </li>
+
+      <!-- Notifications (aparece solo para admin, doctor, paciente) -->
+      <li class="nav-item" *ngIf="userRole === 'admin' || userRole === 'doctor' || userRole === 'patient'">
+        <a href="#" class="nav-link">
+          <span class="material-symbols-rounded">notifications</span>
+          <span class="nav-label">Notifications</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Notifications</a></li>
+        </ul>
+      </li>
+
+      <!-- Resources (aparece solo para admin) -->
+      <li class="nav-item" *ngIf="userRole === 'admin'">
+        <a href="#" class="nav-link">
+          <span class="material-symbols-rounded">local_library</span>
+          <span class="nav-label">Resources</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Resources</a></li>
+        </ul>
+      </li>
+
+      <!-- Bookmarks (aparece solo para admin, doctor) -->
+      <li class="nav-item dropdown-container" *ngIf="userRole === 'admin' || userRole === 'doctor'">
+        <a href="#" class="nav-link dropdown-toggle">
+          <span class="material-symbols-rounded">star</span>
+          <span class="nav-label">Bookmarks</span>
+          <span class="dropdown-icon material-symbols-rounded">keyboard_arrow_down</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Bookmarks</a></li>
+          <li class="nav-item"><a href="#" class="nav-link dropdown-link">Saved Consultations</a></li>
+          <li class="nav-item"><a href="#" class="nav-link dropdown-link">Favorite Patients</a></li>
+        </ul>
+      </li>
+
+      <!-- Settings (aparece solo para admin) -->
+      <li class="nav-item" *ngIf="userRole === 'admin'">
+        <a href="#" class="nav-link">
+          <span class="material-symbols-rounded">settings</span>
+          <span class="nav-label">Settings</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Settings</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Secondary Bottom Nav -->
+    <ul class="nav-list secondary-nav">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span class="material-symbols-rounded">help</span>
+          <span class="nav-label">Support</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Support</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link" (click)="signOut()">
+          <span class="material-symbols-rounded">logout</span>
+          <span class="nav-label">Sign Out</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Sign Out</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>

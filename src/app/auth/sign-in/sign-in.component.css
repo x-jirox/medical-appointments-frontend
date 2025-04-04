@@ -12,6 +12,13 @@
   background-position: center;
   background-size: cover;
 }
+/* Estilo para el mensaje de error */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
 
 .wrapper {
   width: 400px;

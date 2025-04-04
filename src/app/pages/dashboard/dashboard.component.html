@@ -1,0 +1,10 @@
+<!-- dashboard.component.html -->
+<app-sidebar (sidebarToggle)="onSidebarToggle($event)"></app-sidebar>
+
+<!-- Contenedor principal con sidebar -->
+<div class="main-container" [class.sidebar-collapsed]="sidebarCollapsed">
+  <div class="content">
+    <!-- Aquí se cargarán las rutas hijas -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

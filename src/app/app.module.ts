@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,12 +10,14 @@ import { HeaderComponent } from './layout/header/header.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { PageServiceComponent } from './pages/page-service/page-service.component';
-import { PatientDashboardComponent } from './users/patient/patient-dashboard/patient-dashboard.component';
-import { DoctorDashboardComponent } from './users/doctor/doctor-dashboard/doctor-dashboard.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { PatientComponent } from './pages/dashboard/patient/patient.component';
+import { AppointmentComponent } from './pages/dashboard/patient/appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -25,16 +28,20 @@ import { RecoverPasswordComponent } from './auth/recover-password/recover-passwo
     AboutUsComponent,
     ContactComponent,
     PageServiceComponent,
-    PatientDashboardComponent,
-    DoctorDashboardComponent,
     FooterComponent,
     SignUpComponent,
     SignInComponent,
     RecoverPasswordComponent,
+    SidebarComponent,
+    DashboardComponent,
+    PatientComponent,
+    AppointmentComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule
     
   ],
   providers: [],
