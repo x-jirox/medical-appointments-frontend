@@ -3,11 +3,12 @@
     <form (submit)="onSubmit()">
       <h2>Login</h2>
       <div class="input-field">
-        <input type="text" id="email" [(ngModel)]="email" name="email" required>  <!-- Agregado name="email" -->
+        <input type="text" id="email" [(ngModel)]="email" name="email" required> <!-- Agregado name="email" -->
         <label for="email">Enter your email</label>
       </div>
       <div class="input-field">
-        <input type="password" id="password" [(ngModel)]="password" name="password" required>  <!-- Agregado name="password" -->
+        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+        <!-- Agregado name="password" -->
         <label for="password">Enter your password</label>
       </div>
       <div class="forget">
