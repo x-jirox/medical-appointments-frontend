@@ -11,7 +11,7 @@ export class SignInComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   onSubmit() {
     const success = this.authService.login(this.email, this.password);
