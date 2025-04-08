@@ -1,0 +1,26 @@
+.app-layout {
+  display: flex;
+  transition: all 0.3s ease;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease, padding 0.3s ease;
+}
+
+/* Sidebar expandido */
+.sidebar-open .main-content {
+  margin-left: 250px; /* ancho sidebar */
+  padding-left: 40px;  /* separa el contenido del sidebar */
+}
+
+/* Sidebar colapsado */
+.app-layout:not(.sidebar-open) .main-content {
+  margin-left: 80px; /* ancho sidebar colapsado */
+  padding-left: 20px;
+}
+
+.main-content {
+  transition: all 0.3s ease-in-out;
+}

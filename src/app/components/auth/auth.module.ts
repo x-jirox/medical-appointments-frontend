@@ -5,6 +5,7 @@ import { AuthRoutingModule } from './auth-routing.module'; // Importar el módul
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -16,6 +17,7 @@ import { RecoverPasswordComponent } from './recover-password/recover-password.co
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AuthRoutingModule // Aquí importamos el módulo de rutas
   ]
 })

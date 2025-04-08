@@ -1,0 +1,120 @@
+<button class="sidebar-menu-button">
+  <span class="material-symbols-rounded">menu</span>
+</button>
+
+<aside class="sidebar">
+
+  <header class="sidebar-header">
+    <a href="#" class="header-logo">
+      <img src="../../../../assets/img/dr1.png" alt="CodingNepal" /></a>
+    <button class="sidebar-toggler">
+      <span class="material-symbols-rounded">chevron_left</span>
+    </button>
+  </header>
+
+  <nav class="sidebar-nav">
+
+    <!-- Primary Top Nav -->
+    <ul class="nav-list primary-nav">
+
+
+
+      <!-- Dashboard (visible for all roles) -->
+      <li class="nav-item">
+        <a href="#" class="nav-link" [routerLink]="getDashboardLink()">
+          <span class="material-symbols-rounded">dashboard</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+      </li>
+
+
+
+      <!-- Para paciente -->
+      <li class="nav-item" *ngIf="userRole === 'patient'">
+        <a [routerLink]="['patient/medical-history']" class="nav-link">
+          <span class="material-symbols-rounded">history</span>
+          <span class="nav-label">Medical History</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="userRole === 'patient'">
+        <a [routerLink]="['patient/appointments']" class="nav-link">
+          <span class="material-symbols-rounded">schedule</span>
+          <span class="nav-label">Appointments</span>
+        </a>
+      </li>
+
+
+
+      <!-- Para doctor -->
+      <li class="nav-item" *ngIf="userRole === 'doctor'">
+        <a [routerLink]="['doctor/patients']" class="nav-link">
+          <span class="material-symbols-rounded">group</span>
+          <span class="nav-label">Patients</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="userRole === 'doctor'">
+        <a [routerLink]="['doctor/medical-history']" class="nav-link">
+          <span class="material-symbols-rounded">history</span>
+          <span class="nav-label">Medical History</span>
+        </a>
+      </li>
+
+
+
+
+      <!-- Para admin -->
+      <!-- <li class="nav-item" *ngIf="userRole === 'admin'">
+        <a href="/admin/patients" class="nav-link">
+          <span class="material-symbols-rounded">group</span>
+          <span class="nav-label">Patients</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="userRole === 'admin'">
+        <a href="/admin/doctors" class="nav-link">
+          <span class="material-symbols-rounded">supervised_user_circle</span>
+          <span class="nav-label">Doctors</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="userRole === 'admin'">
+        <a href="/admin/dashboard" class="nav-link">
+          <span class="material-symbols-rounded">dashboard</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+      </li> -->
+
+
+
+    </ul>
+
+
+
+    <!-- Secondary Bottom Nav -->
+    <ul class="nav-list secondary-nav">
+
+      <li class="nav-item">
+        <a [routerLink]="['patient/profile']" class="nav-link">
+          <span class="material-symbols-rounded">account_circle</span>
+          <span class="nav-label">Profile</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Profile</a></li>
+        </ul>
+      </li>
+
+
+
+      <!--log out-->>
+      <li class="nav-item">
+        <a class="nav-link" (click)="onLogout()">
+          <span class="material-symbols-rounded">logout</span>
+          <span class="nav-label">Sign Out</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Sign Out</a></li>
+        </ul>
+      </li>
+
+    </ul>
+
+  </nav>
+</aside>
