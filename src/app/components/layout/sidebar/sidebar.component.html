@@ -21,7 +21,7 @@
 
       <!-- Dashboard (visible for all roles) -->
       <li class="nav-item">
-        <a href="#" class="nav-link" [routerLink]="getDashboardLink()">
+        <a  class="nav-link" [routerLink]="getDashboardLink()">
           <span class="material-symbols-rounded">dashboard</span>
           <span class="nav-label">Dashboard</span>
         </a>
@@ -92,7 +92,7 @@
     <ul class="nav-list secondary-nav">
 
       <li class="nav-item">
-        <a [routerLink]="['patient/profile']" class="nav-link">
+        <a [routerLink]="getProfileLink()" class="nav-link">
           <span class="material-symbols-rounded">account_circle</span>
           <span class="nav-label">Profile</span>
         </a>

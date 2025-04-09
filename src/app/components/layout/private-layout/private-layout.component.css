@@ -1,0 +1,21 @@
+.app-layout {
+    display: flex;
+    transition: all 0.3s ease;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    transition: margin-left 0.3s ease, padding 0.3s ease;
+  }
+  
+  .sidebar-open .main-content {
+    margin-left: 250px;
+    padding-left: 40px;
+  }
+  
+  .app-layout:not(.sidebar-open) .main-content {
+    margin-left: 80px;
+    padding-left: 20px;
+  }
+  
