@@ -34,4 +34,11 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
+
+  /*
+  nueva estrcutra de rutas por revisar
+  sera buena practica
+  se manejara mediante los layouts
+  */
 export class AppRoutingModule { }
