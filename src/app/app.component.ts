@@ -50,4 +50,5 @@ estructura de carpetas, para que sea facil de entender y mantener el codigo.
 revisar ap.component.html, es buena practica tenerlo echo de esa manera?
 mejorar rendimiento multimedia, png a webp para mejorar el rendimiento de la aplicacion.
 organizar carpeta assets para que sea facil de entender y mantener el codigo.
+nueva estructura de layouts
 */
