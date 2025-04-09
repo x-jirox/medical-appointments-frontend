@@ -17,4 +17,4 @@ import { PatientsComponent } from './patients/patients.component';
         DoctorRoutingModule // Aquí importamos el módulo de rutas
     ]
 })
-export class PatientModule { }
+export class DoctorModule { }

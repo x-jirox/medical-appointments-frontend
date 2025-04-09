@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
+import { PublicLayoutComponent } from './components/layout/public-layout/public-layout.component';
+import { PrivateLayoutComponent } from './components/layout/private-layout/private-layout.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { SidebarComponent } from './components/layout/sidebar/sidebar.component'
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+    PublicLayoutComponent,
+    PrivateLayoutComponent,
 
   ],
   imports: [

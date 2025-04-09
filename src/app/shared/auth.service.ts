@@ -4,9 +4,7 @@ import { Router } from '@angular/router';
 
 export type UserRole = 'patient' | 'doctor' | 'admin';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private mockUsers = [
     { username: 'patient1', password: '123', role: 'patient' },
@@ -18,37 +16,38 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
+  private loadUser(): void {
+    if (!this.currentUser) {
+      const storedUser = localStorage.getItem('user');
+      this.currentUser = storedUser ? JSON.parse(storedUser) : null;
+    }
+  }
+
   login(username: string, password: string): boolean {
     const user = this.mockUsers.find(u => u.username === username && u.password === password);
     if (user) {
       this.currentUser = { username: user.username, role: user.role as UserRole };
-      localStorage.setItem('user', JSON.stringify(this.currentUser));  // ← Persistencia
+      localStorage.setItem('user', JSON.stringify(this.currentUser));
       this.redirectUser(user.role as UserRole);
       return true;
     }
     return false;
   }
 
-  getRole(): UserRole | null {
-    if (!this.currentUser) {
-      const user = localStorage.getItem('user');
-      this.currentUser = user ? JSON.parse(user) : null;
-    }
-    return this.currentUser?.role || null;
-  }
-
-  isLoggedIn(): boolean {
-    if (!this.currentUser) {
-      const user = localStorage.getItem('user');
-      this.currentUser = user ? JSON.parse(user) : null;
-    }
-    return !!this.currentUser;
-  }
-
   logout(): void {
     this.currentUser = null;
     localStorage.removeItem('user');
     this.router.navigate(['/auth/sign-in']);
+  }
+
+  getRole(): UserRole | null {
+    this.loadUser();
+    return this.currentUser?.role || null;
+  }
+
+  isLoggedIn(): boolean {
+    this.loadUser();
+    return !!this.currentUser;
   }
 
   private redirectUser(role: UserRole): void {
@@ -60,7 +59,7 @@ export class AuthService {
         this.router.navigate(['/doctor/dashboard']);
         break;
       case 'admin':
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/admin/dashboard']); // si agregás admin en el futuro
         break;
     }
   }

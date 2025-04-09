@@ -6,37 +6,9 @@ import { AuthService } from './shared/auth.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-})export class AppComponent implements OnInit {
-  isLoggedIn = false;
-  isSidebarOpen = true;
-  role: string | null = null;
+})
+export class AppComponent  {
 
-  constructor(public authService: AuthService, private router: Router) {}
-
-  ngOnInit() {
-    this.subscribeToRouterEvents();
-  }
-
-  private subscribeToRouterEvents() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.updateAuthState();
-      }
-    });
-  }
-
-  private updateAuthState() {
-    this.isLoggedIn = this.authService.isLoggedIn();
-    this.role = this.authService.getRole();
-
-    if (!this.isLoggedIn) {
-      this.isSidebarOpen = false;
-    }
-  }
-
-  toggleSidebar(isOpen: boolean) {
-    this.isSidebarOpen = isOpen;
-  }
 }
 
 
@@ -53,3 +25,12 @@ organizar carpeta assets para que sea facil de entender y mantener el codigo.
 nueva estructura de layouts
 dividir layouts publicos y privados
 */
+
+
+
+
+
+
+
+
+

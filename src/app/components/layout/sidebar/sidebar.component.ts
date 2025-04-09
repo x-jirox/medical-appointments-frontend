@@ -63,6 +63,19 @@ export class SidebarComponent implements AfterViewInit {
     }
   }
 
+  getProfileLink(): string {
+    switch (this.userRole) {
+      case 'patient':
+        return '/patient/profile';
+      case 'doctor':
+        return '/doctor/profile';
+      case 'admin':
+        return '/admin/profile';
+      default:
+        return '/';
+    }
+  }
+
   // Función de logout
   onLogout(): void {
     this.authService.logout(); // Llama al método de logout de AuthService
