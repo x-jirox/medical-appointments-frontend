@@ -1,10 +1,51 @@
-<!-- dashboard.component.html -->
-<header>...header...</header>
+<div class="dashboard-wrapper">
+  <header class="dashboard-header">
+    <div class="left">
+      <h1>Bienvenido, Juan Pérez</h1>
+      <p>Resumen general de tu información médica</p>
+    </div>
+    <div class="right">
+      <img src="assets/avatar.svg" alt="Avatar" class="avatar" />
+    </div>
+  </header>
 
-<nav>
-  <a routerLink="/patient/profile">Perfil</a>
-  <a routerLink="/patient/appointments">Citas</a>
-  <a routerLink="/patient/medical-history">Historial</a>
-</nav>
+  <section class="dashboard-cards">
+    <div class="card card-primary">
+      <div class="icon"><i class="fas fa-calendar-check"></i></div>
+      <div class="content">
+        <h3>Próxima cita</h3>
+        <p>15 de abril, 10:00 AM</p>
+      </div>
+    </div>
 
-<router-outlet></router-outlet>
+    <div class="card card-info">
+      <div class="icon"><i class="fas fa-notes-medical"></i></div>
+      <div class="content">
+        <h3>Historial médico</h3>
+        <p>8 registros disponibles</p>
+      </div>
+    </div>
+
+    <div class="card card-warning">
+      <div class="icon"><i class="fas fa-file-medical-alt"></i></div>
+      <div class="content">
+        <h3>Documentos</h3>
+        <p>3 archivos subidos</p>
+      </div>
+    </div>
+
+    <div class="card card-success">
+      <div class="icon"><i class="fas fa-syringe"></i></div>
+      <div class="content">
+        <h3>Vacunas</h3>
+        <p>COVID-19, Hepatitis B</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard-extra">
+    <div class="chart-placeholder">
+      <p>📊 Próximamente: gráfico de evolución médica</p>
+    </div>
+  </section>
+</div>
