@@ -5,10 +5,11 @@
       <p>Resumen general de tu información médica</p>
     </div>
     <div class="right">
-      <img src="assets/avatar.svg" alt="Avatar" class="avatar" />
+      <img src="../../../../../../assets/img/dr1.png" alt="Avatar" class="avatar" />
     </div>
   </header>
 
+  <!-- Cards principales -->
   <section class="dashboard-cards">
     <div class="card card-primary">
       <div class="icon"><i class="fas fa-calendar-check"></i></div>
@@ -43,6 +44,60 @@
     </div>
   </section>
 
+  <!-- Estado general + alertas -->
+  <section class="dashboard-overview">
+    <div class="health-widget">
+      <h2>Estado general</h2>
+      <p class="status">Salud estable</p>
+      <p class="note">Últimos signos vitales dentro del rango normal.</p>
+    </div>
+
+    <div class="alerts-widget">
+      <h2>Alertas médicas</h2>
+      <ul>
+        <li><i class="fas fa-exclamation-triangle"></i> Receta para hipertensión vence en 3 días</li>
+        <li><i class="fas fa-bell"></i> Recordatorio de análisis de sangre programado</li>
+        <li><i class="fas fa-pills"></i> Toma diaria de vitamina D</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Tabla últimas visitas -->
+  <section class="dashboard-table">
+    <h2>Últimas visitas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Motivo</th>
+          <th>Doctor</th>
+          <th>Notas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>05/04/2025</td>
+          <td>Chequeo general</td>
+          <td>Dra. Gómez</td>
+          <td>Sin anomalías</td>
+        </tr>
+        <tr>
+          <td>20/03/2025</td>
+          <td>Dolor de cabeza</td>
+          <td>Dr. Pérez</td>
+          <td>Recetado analgésico</td>
+        </tr>
+        <tr>
+          <td>10/03/2025</td>
+          <td>Vacuna Hepatitis</td>
+          <td>Enfermero Díaz</td>
+          <td>Primera dosis aplicada</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Placeholder gráfico -->
   <section class="dashboard-extra">
     <div class="chart-placeholder">
       <p>📊 Próximamente: gráfico de evolución médica</p>
