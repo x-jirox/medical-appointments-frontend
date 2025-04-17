@@ -8,3 +8,5 @@ import { Component } from '@angular/core';
 export class SignUpComponent {
 
 }
+
+/*revisar mejores formas de implementar la api*/
