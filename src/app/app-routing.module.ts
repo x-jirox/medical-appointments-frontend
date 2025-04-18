@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/pages/public/not-found/not-found.component';
-import { AuthGuard } from './shared/auth.guard';
 import { PublicLayoutComponent } from './components/layout/public-layout/public-layout.component';
 import { PrivateLayoutComponent } from './components/layout/private-layout/private-layout.component';
+import { AuthGuard } from './shared/authentication/auth.guard';
 
 const routes: Routes = [
 
@@ -34,15 +34,23 @@ const routes: Routes = [
         path: 'patient',
         loadChildren: () =>
           import('./components/pages/private/patient/patient.module').then(m => m.PatientModule),
-        canActivate: [AuthGuard],
-        data: { role: 'patient' }
+        canActivate: [AuthGuard
+        ],
+        data: { role: 'PATIENT' }
       },
       {
         path: 'doctor',
         loadChildren: () =>
           import('./components/pages/private/doctor/doctor.module').then(m => m.DoctorModule),
         canActivate: [AuthGuard],
-        data: { role: 'doctor' }
+        data: { role: 'DOCTOR' }
+      },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('./components/pages/private/admin/admin.module').then(m => m.AdminModule),
+        canActivate: [AuthGuard],
+        data: { role: 'ADMIN' }
       }
     ]
   },

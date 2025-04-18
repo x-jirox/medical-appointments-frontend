@@ -4,7 +4,8 @@ import { AuthRoutingModule } from './auth-routing.module'; // Importar el módul
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,10 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    AuthRoutingModule 
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
+    
   ]
 })
 export class AuthModule { }

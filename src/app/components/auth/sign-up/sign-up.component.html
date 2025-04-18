@@ -1,31 +1,56 @@
 <div class="container">
   <div class="wrapper">
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <h2>Register</h2>
+
+      <!-- Nombre -->
       <div class="input-field">
-        <input type="text" id="name" required>  
-        <label for="email">Enter your Name</label>
+        <input type="text" formControlName="names" placeholder="Enter your Name" />
+        <div *ngIf="registerForm.get('names')?.touched && registerForm.get('names')?.invalid">
+          {{ getFieldError('names') }}
+        </div>
       </div>
+
+      <!-- Teléfono -->
       <div class="input-field">
-        <input type="text" id="phone" required>  
-        <label for="email">Enter your phone</label>
+        <input type="text" formControlName="phone" placeholder="Enter your phone" />
+        <div *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+          {{ getFieldError('phone') }}
+        </div>
       </div>
+
+      <!-- Correo electrónico -->
       <div class="input-field">
-        <input type="text" id="email" required>  
-        <label for="email">Enter your email</label>
+        <input type="email" formControlName="email" placeholder="Enter your email" />
+        <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+          {{ getFieldError('email') }}
+        </div>
       </div>
+
+      <!-- Contraseña -->
       <div class="input-field">
-        <input type="password" id="password" required>
-        <label for="password">Enter your password</label>
+        <input type="password" formControlName="password" placeholder="Enter your password" />
+        <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+          {{ getFieldError('password') }}
+        </div>
       </div>
+
+      <!-- Confirmar contraseña -->
       <div class="input-field">
-        <input type="password" id="confirm-password" required>
-        <label for="confirm-password">Confirm your password</label>
+        <input type="password" formControlName="confirmPassword" placeholder="Confirm your password" />
+        <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched">
+          {{ getFieldError('confirmPassword') }}
+        </div>
       </div>
-      <button type="submit">Register</button>
+
+      <button type="submit" [disabled]="registerForm.invalid">Register</button>
+
       <div class="login">
         <p>Already have an account? <a [routerLink]="['/auth/sign-in']">Log In</a></p>
       </div>
+
+      <!-- Error general de registro -->
+      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
     </form>
   </div>
 </div>

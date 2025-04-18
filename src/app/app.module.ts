@@ -8,6 +8,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
 import { PublicLayoutComponent } from './components/layout/public-layout/public-layout.component';
 import { PrivateLayoutComponent } from './components/layout/private-layout/private-layout.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,16 @@ import { PrivateLayoutComponent } from './components/layout/private-layout/priva
     SidebarComponent,
     PublicLayoutComponent,
     PrivateLayoutComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
     
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
