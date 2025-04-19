@@ -10,3 +10,5 @@ import { AuthService } from './shared/authentication/auth.service';
 export class AppComponent  {
 
 }
+
+/*Investigar acerca de sokets para mensajes */
