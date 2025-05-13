@@ -1,6 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
-* {
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* styles.css */
+
+/* Ajusta la posición para dispositivos pequeños */
+@media (max-width: 768px) {
+  .p-toast {
+    left: 50% !important;  /* Centra el toast horizontalmente */
+    transform: translateX(-50%) !important;  /* Ajusta para que se centre perfectamente */
+    top: 0px !important;  /* Pone el toast en la parte superior */
+  }
+
+  .p-toast .p-toast-message {
+    padding: 10px; /* Ajusta el padding para que sea más pequeño en pantallas pequeñas */
+    font-size: 14px; /* Ajusta el tamaño de fuente para que se vea bien en pantallas pequeñas */
+  }
+}
+
+/* Estilos generales para pantallas grandes */
+.p-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.p-toast .p-toast-message {
+  padding: 12px; /* Padding más grande para pantallas grandes */
+  font-size: 16px; /* Tamaño de fuente para pantallas grandes */
 }

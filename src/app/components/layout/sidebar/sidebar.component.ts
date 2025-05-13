@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/shared/authentication/auth.service';
+import { MessageService } from 'primeng/api'; // Importa el servicio para mostrar toasts
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,7 @@ export class SidebarComponent implements AfterViewInit {
   userRole: string | null = null; // Variable para almacenar el rol del usuario
   menuItems: any[] = []; // Arreglo para almacenar los elementos del menú
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,private messageService: MessageService /* Inyecta MessageService*/) {
     this.userRole = this.authService.getRole()?.toLowerCase() ?? null;
     this.setMenuItems();  // Establecer los elementos del menú según el rol
   }
@@ -95,7 +96,12 @@ export class SidebarComponent implements AfterViewInit {
   }
 
   // Función de logout
-  onLogout(): void {
+  onLogout(){
     this.authService.logout(); // Llama al método de logout de AuthService
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Logout successful',
+      detail: 'You have successfully logged out.',
+    });
   }
 }

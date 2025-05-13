@@ -9,6 +9,9 @@ import { SidebarComponent } from './components/layout/sidebar/sidebar.component'
 import { PublicLayoutComponent } from './components/layout/public-layout/public-layout.component';
 import { PrivateLayoutComponent } from './components/layout/private-layout/private-layout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -22,11 +25,14 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    BrowserAnimationsModule, // Requerido por PrimeNG
+    ToastModule,
+
+
   ],
   providers: [
-
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/shared/authentication/auth.service';
 import { Router } from '@angular/router';
 import { RegisterResponse } from 'src/app/shared/models/sign-up.interface';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,80 +11,127 @@ import { RegisterResponse } from 'src/app/shared/models/sign-up.interface';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  registerForm!: FormGroup;  // Formulario de registro
-  errorMessage: string | null = null;  // Mensaje de error global
+  registerForm!: FormGroup;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
-  ngOnInit(): void {
-    this.initForm();  // Inicializa el formulario cuando el componente se carga
-  }
-
-  // Método para crear y validar el formulario
-  private initForm(): void {
+  ngOnInit() {
     this.registerForm = this.fb.group({
-      names: ['', Validators.required],  // Nombre
-      phone: ['', [Validators.required, Validators.pattern('^[0-9]{7,15}$')]],  // Teléfono
-      email: ['', [Validators.required, Validators.email]],  // Correo electrónico
-      password: ['', [Validators.required, Validators.minLength(6)]],  // Contraseña
-      confirmPassword: ['', Validators.required]  // Confirmación de la contraseña
-    }, { validator: this.passwordMatchValidator });  // Validador personalizado para contraseñas coincidentes
+      names: [''],
+      phone: [''],
+      email: [''],
+      password: [''],
+      confirmPassword: ['']
+    });
   }
 
-  // Validador personalizado para asegurarse que las contraseñas coincidan
-  private passwordMatchValidator(form: FormGroup) {
-    const password = form.get('password')?.value;
-    const confirm = form.get('confirmPassword')?.value;
-    return password === confirm ? null : { mismatch: true };  // Retorna un error si las contraseñas no coinciden
-  }
-
-  // Método para verificar si un campo es inválido y tocado
-  getFieldError(controlName: string): string | null {
-    const control = this.registerForm.get(controlName);
-    if (control?.hasError('required')) {
-      return `${controlName} is required`;
-    } else if (control?.hasError('email')) {
-      return 'Invalid email format';
-    } else if (control?.hasError('pattern')) {
-      return `Invalid ${controlName} format`;
-    } else if (control?.hasError('minlength')) {
-      return `${controlName} must be at least 6 characters long`;
-    } else if (control?.hasError('mismatch')) {
-      return 'Passwords do not match';
-    }
-    return null;
-  }
-
-  // Método que se ejecuta cuando se envía el formulario
   onSubmit(): void {
-    if (this.registerForm.invalid) return;  // No hacemos nada si el formulario no es válido
+    this.submitted = true;
+    const { names, phone, email, password, confirmPassword } = this.registerForm.value;
 
-    const { names, phone, email, password } = this.registerForm.value;
+    const missingFields: string[] = [];
+    if (!names) missingFields.push('el nombre');
+    if (!phone) missingFields.push('el teléfono');
+    if (!email) missingFields.push('el correo');
+    if (!password) missingFields.push('la contraseña');
+    if (!confirmPassword) missingFields.push('la confirmación de la contraseña');
 
-    // Llamada al servicio de autenticación para registrar al usuario
+    if (missingFields.length > 0) {
+      const detail = missingFields.length === 1
+        ? `Debes ingresar ${missingFields[0]}`
+        : `Debes ingresar ${missingFields.join(', ')}`;
+
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Campos obligatorios',
+        detail,
+      });
+      return;
+    }
+
+    if (!/^[0-9]{7,10}$/.test(phone)) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Teléfono inválido',
+        detail: 'El teléfono debe tener entre 7 y 10 dígitos numéricos',
+      });
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Correo inválido',
+        detail: 'El formato del correo no es válido',
+      });
+      return;
+    }
+
+    if (password.length < 6) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Contraseña inválida',
+        detail: 'La contraseña debe tener al menos 6 caracteres',
+      });
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Error de validación',
+        detail: 'Las contraseñas no coinciden',
+      });
+      return;
+    }
+
     this.authService.register({ names, phone, email, password }).subscribe({
       next: (response: RegisterResponse) => {
-        console.log('Registration Successful', response);  // Si es exitoso
-        this.router.navigate(['/auth/sign-in']);  // Redirigir a la página de inicio de sesión
-        this.registerForm.reset();  // Resetear el formulario
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Registro exitoso',
+          detail: 'Ya puedes iniciar sesión',
+        });
+        this.router.navigate(['/auth/sign-in']);
+        this.registerForm.reset();
+        this.submitted = false;
       },
       error: (err) => {
-        console.error('Registration Error:', err);  // Log de error
-        if (err.error && err.error.message) {
-          this.errorMessage = err.error.message;  // Mostrar un mensaje de error detallado si está disponible
-        } else {
-          this.errorMessage = 'Registration failed. Try again.';  // Mensaje genérico
-        }
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error en el registro',
+          detail: err?.error?.message || 'Este usuario ya esta registrado.',
+        });
       }
     });
   }
 
-  // Método para verificar si el formulario está completamente válido
-  isFormValid(): boolean {
-    return this.registerForm.valid;
+  // Métodos auxiliares para el template
+  isEmpty(field: string): boolean {
+    return this.submitted && !this.registerForm.get(field)?.value;
+  }
+
+  isInvalidPattern(field: string): boolean {
+    const value = this.registerForm.get(field)?.value;
+    if (!value) return false;
+
+    switch (field) {
+      case 'phone':
+        return !/^[0-9]{7,10}$/.test(value);
+      case 'email':
+        return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      case 'password':
+        return value.length < 6;
+      case 'confirmPassword':
+        return value !== this.registerForm.get('password')?.value;
+      default:
+        return false;
+    }
   }
 }

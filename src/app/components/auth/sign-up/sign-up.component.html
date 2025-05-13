@@ -6,41 +6,26 @@
       <!-- Nombre -->
       <div class="input-field">
         <input type="text" formControlName="names" placeholder="Enter your Name" />
-        <div *ngIf="registerForm.get('names')?.touched && registerForm.get('names')?.invalid">
-          {{ getFieldError('names') }}
-        </div>
       </div>
 
       <!-- Teléfono -->
       <div class="input-field">
         <input type="text" formControlName="phone" placeholder="Enter your phone" />
-        <div *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
-          {{ getFieldError('phone') }}
-        </div>
       </div>
 
       <!-- Correo electrónico -->
       <div class="input-field">
         <input type="email" formControlName="email" placeholder="Enter your email" />
-        <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
-          {{ getFieldError('email') }}
-        </div>
       </div>
 
       <!-- Contraseña -->
       <div class="input-field">
         <input type="password" formControlName="password" placeholder="Enter your password" />
-        <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
-          {{ getFieldError('password') }}
-        </div>
       </div>
 
       <!-- Confirmar contraseña -->
       <div class="input-field">
         <input type="password" formControlName="confirmPassword" placeholder="Confirm your password" />
-        <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched">
-          {{ getFieldError('confirmPassword') }}
-        </div>
       </div>
 
       <button type="submit" [disabled]="registerForm.invalid">Register</button>
@@ -49,8 +34,6 @@
         <p>Already have an account? <a [routerLink]="['/auth/sign-in']">Log In</a></p>
       </div>
 
-      <!-- Error general de registro -->
-      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
     </form>
   </div>
 </div>
