@@ -1,7 +1,9 @@
+// sign-in.component.ts
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { AuthService } from 'src/app/shared/authentication/auth.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,62 +11,64 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent {
-  loginForm: FormGroup; // Formulario reactivo
-  errorMessage: string = ''; // Mensaje de error en caso de fallo al iniciar sesión
+  loginForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
-    // Inicialización del formulario con validaciones
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      email: [''],
+      password: ['']
     });
   }
 
-  // Método llamado al hacer submit en el formulario
   onLogin(): void {
-    if (this.loginForm.invalid) return;
-
     const { email, password } = this.loginForm.value;
 
+    // Validaciones manuales
+    const missingFields = [];
+    if (!email) missingFields.push('el correo');
+    if (!password) missingFields.push('la contraseña');
+
+    if (missingFields.length) {
+      const detail = missingFields.length === 2
+        ? 'Debes ingresar el correo y la contraseña'
+        : `Debes ingresar ${missingFields[0]}`;
+
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Campo obligatorio',
+        detail,
+      });
+      return;
+    }
+
+
+    // Si pasa todas las validaciones, se hace el login
     this.authService.login({ email, password }).subscribe({
       next: (response) => {
-        // Guardamos token y rol
         this.authService.setToken(response.token);
         this.authService.setRole(response.role);
 
-        // Redirigimos al dashboard correspondiente al rol
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Login successful',
+          detail: 'Welcome back!',
+        });
+
         const dashboardRoute = `/${response.role.toLowerCase()}/dashboard`;
         this.router.navigate([dashboardRoute]);
       },
       error: () => {
-        this.errorMessage = 'Invalid email or password';
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Login failed',
+          detail: 'Invalid email or password',
+        });
       }
     });
-  }
-
-  // Getters para acceder fácilmente a los controles del formulario en la plantilla
-  get email() {
-    return this.loginForm.get('email');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
-  }
-
-  // Método para obtener errores legibles por campo
-  getFieldError(controlName: string): string | null {
-    const control = this.loginForm.get(controlName);
-    if (control?.hasError('required')) {
-      return `${controlName} is required`;
-    } else if (control?.hasError('email')) {
-      return 'Invalid email format';
-    } else if (control?.hasError('minlength')) {
-      return `${controlName} must be at least ${control.errors?.['minlength']?.requiredLength} characters long`;
-    }
-    return null;
   }
 }

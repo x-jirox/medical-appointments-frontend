@@ -16,7 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 5px 30px;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -103,30 +103,44 @@
   }
 
   /* Ocultar el menú en móvil */
-  .nav {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    background-color: #000000e2;
-    text-align: center;
-    display: none;
-    flex-direction: column;
-    padding: 350px 0;
-    z-index: -1;
-  }
+.nav {
+  position: absolute;
+  top: 0;
+  left: 45%;
+  transform: translateX(-50%);
+  background-color: #000000e2;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  z-index: -1;
+}
 
-  .nav.is-open {
-    display: flex;
-    /* Mostrar menú al hacer clic */
-  }
+.nav.is-open {
+  display: flex;
+  height: 100vh; /* Altura completa de la pantalla */
+  width: 150vh; /* Ancho completo */
+  /* Mostrar el menú al hacer clic */
+}
 
-  .nav-links {
-    flex-direction: column;
-    gap: 20px;
-  }
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column; /* Organiza las opciones en una columna */
+  gap: 20px; /* Espaciado entre las opciones */
+  font-weight: bold;
+}
 
+.nav-link {
+  text-decoration: none;
+  color: #d5d3d3;
+  font-size: 1.3rem;
+  padding: 8px 12px;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
   /* Ocultar el botón de cuenta en móvil */
   .auth {
     display: none;

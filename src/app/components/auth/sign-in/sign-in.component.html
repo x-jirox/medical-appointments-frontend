@@ -6,17 +6,11 @@
       <!-- Campo Email -->
       <div class="input-field">
         <input type="email" formControlName="email" placeholder="Enter your email" />
-        <div class="error" *ngIf="email?.touched && email?.invalid">
-          {{ getFieldError('email') }}
-        </div>
       </div>
 
       <!-- Campo Password -->
       <div class="input-field">
         <input type="password" formControlName="password" placeholder="Enter your password" />
-        <div class="error" *ngIf="password?.touched && password?.invalid">
-          {{ getFieldError('password') }}
-        </div>
       </div>
 
       <!-- Sección: Recordarme y recuperar contraseña -->
@@ -31,10 +25,7 @@
       <!-- Botón de envío -->
       <button type="submit" [disabled]="loginForm.invalid">Log In</button>
 
-      <!-- Mensaje de error global -->
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
+
 
       <!-- Enlace a registro -->
       <div class="register">
