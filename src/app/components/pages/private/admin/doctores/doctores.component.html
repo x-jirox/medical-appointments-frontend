@@ -1,89 +1,84 @@
+<div class="form-wrapper">
+  <h2>Registrar Nuevo Doctor</h2>
 
-<body>
-  <div class="form-wrapper">
-    <h2>Registrar Nuevo Doctor</h2>
-
-    <!-- Encabezado de pasos -->
-    <div class="step-header">
-      <div class="step active"><div class="circle"><i class="fas fa-user"></i></div><span>Personal</span></div>
-      <div class="step"><div class="circle"><i class="fas fa-briefcase-medical"></i></div><span>Profesional</span></div>
-      <div class="step"><div class="circle"><i class="fas fa-graduation-cap"></i></div><span>Educación</span></div>
-      <div class="step"><div class="circle"><i class="fas fa-envelope"></i></div><span>Cuenta</span></div>
-      <div class="step"><div class="circle"><i class="fas fa-eye"></i></div><span>Revisión</span></div>
-    </div>
-
-    <form id="multiStepForm" class="form-content">
-      <!-- Paso 1 -->
-      <div class="form-step active">
-        <div class="input-group"><label>Nombre</label><input type="text" required /></div>
-        <div class="input-group"><label>Apellido</label><input type="text" required /></div>
-        <div class="input-group"><label>Fecha de nacimiento</label><input type="date" required /></div>
-        <div class="input-group"><label>Cédula</label><input type="text" required /></div>
-      </div>
-
-      <!-- Paso 2 -->
-      <div class="form-step">
-        <div class="input-group"><label>Ocupación</label><input type="text" required /></div>
-        <div class="input-group"><label>Título profesional</label><input type="text" required /></div>
-        <div class="input-group"><label>Años de experiencia</label><input type="number" min="0" required /></div>
-        <div class="input-group">
-          <label>Género</label>
-          <select required>
-            <option value="">Seleccione</option>
-            <option>Masculino</option>
-            <option>Femenino</option>
-            <option>Otro</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Paso 3 -->
-      <div class="form-step">
-        <div class="input-group"><label>Lugar de educación</label><input type="text" required /></div>
-        <div class="input-group"><label>Título académico</label><input type="text" required /></div>
-        <div class="input-group"><label>Año de graduación</label><input type="number" min="1900" max="2100" required /></div>
-      </div>
-
-      <!-- Paso 4 -->
-      <div class="form-step">
-        <div class="input-group"><label>Correo electrónico</label><input type="email" required /></div>
-        <div class="input-group"><label>Contraseña</label><input type="password" required /></div>
-      </div>
-
-      <!-- Paso 5: Revisión -->
-      <div class="form-step">
-        <h3>Revisar Datos</h3>
-        <div class="review-section">
-          <h4>Datos Personales</h4>
-          <p><strong>Nombre:</strong> <span id="rev-nombre"></span></p>
-          <p><strong>Apellido:</strong> <span id="rev-apellido"></span></p>
-          <p><strong>Fecha Nacimiento:</strong> <span id="rev-nacimiento"></span></p>
-          <p><strong>Cédula:</strong> <span id="rev-cedula"></span></p>
-
-          <h4>Datos Profesionales</h4>
-          <p><strong>Ocupación:</strong> <span id="rev-ocupacion"></span></p>
-          <p><strong>Título Profesional:</strong> <span id="rev-titulo"></span></p>
-          <p><strong>Años Experiencia:</strong> <span id="rev-experiencia"></span></p>
-          <p><strong>Género:</strong> <span id="rev-genero"></span></p>
-
-          <h4>Educación</h4>
-          <p><strong>Lugar:</strong> <span id="rev-lugar"></span></p>
-          <p><strong>Título Académico:</strong> <span id="rev-tituloAcad"></span></p>
-          <p><strong>Año Graduación:</strong> <span id="rev-graduacion"></span></p>
-
-          <h4>Cuenta</h4>
-          <p><strong>Correo:</strong> <span id="rev-correo"></span></p>
-          <p><strong>Contraseña:</strong> <span id="rev-password"></span></p>
-        </div>
-      </div>
-
-      <!-- Navegación -->
-      <div class="form-navigation">
-        <button type="button" id="prevBtn">Anterior</button>
-        <button type="button" id="nextBtn">Siguiente</button>
-      </div>
-    </form>
+  <!-- Step headers -->
+  <div class="step-header">
+    <div class="step active"><div class="circle"><i class="fas fa-user"></i></div><span>Personal</span></div>
+    <div class="step"><div class="circle"><i class="fas fa-briefcase-medical"></i></div><span>Profesional</span></div>
+    <div class="step"><div class="circle"><i class="fas fa-graduation-cap"></i></div><span>Educación</span></div>
+    <div class="step"><div class="circle"><i class="fas fa-envelope"></i></div><span>Cuenta</span></div>
+    <div class="step"><div class="circle"><i class="fas fa-eye"></i></div><span>Revisión</span></div>
   </div>
 
- 
-</body>
+  <form class="form-content">
+    <!-- Paso 1 -->
+    <div class="form-step active">
+      <div class="input-group"><label>Nombre</label><input type="text" required /></div>
+      <div class="input-group"><label>Apellido</label><input type="text" required /></div>
+      <div class="input-group"><label>Fecha de nacimiento</label><input type="date" required /></div>
+      <div class="input-group"><label>Cédula</label><input type="text" required /></div>
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="form-step">
+      <div class="input-group"><label>Ocupación</label><input type="text" required /></div>
+      <div class="input-group"><label>Título profesional</label><input type="text" required /></div>
+      <div class="input-group"><label>Años de experiencia</label><input type="number" min="0" required /></div>
+      <div class="input-group">
+        <label>Género</label>
+        <select required>
+          <option value="">Seleccione</option>
+          <option>Masculino</option>
+          <option>Femenino</option>
+          <option>Otro</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="form-step">
+      <div class="input-group"><label>Lugar de educación</label><input type="text" required /></div>
+      <div class="input-group"><label>Título académico</label><input type="text" required /></div>
+      <div class="input-group"><label>Año de graduación</label><input type="number" min="1900" max="2100" required /></div>
+    </div>
+
+    <!-- Paso 4 -->
+    <div class="form-step">
+      <div class="input-group"><label>Correo electrónico</label><input type="email" required /></div>
+      <div class="input-group"><label>Contraseña</label><input type="password" required /></div>
+    </div>
+
+    <!-- Paso 5: Revisión -->
+    <div class="form-step">
+      <h3>Revisar Datos</h3>
+      <div class="review-section">
+        <h4>Datos Personales</h4>
+        <p><strong>Nombre:</strong> <span id="rev-nombre"></span></p>
+        <p><strong>Apellido:</strong> <span id="rev-apellido"></span></p>
+        <p><strong>Fecha Nacimiento:</strong> <span id="rev-nacimiento"></span></p>
+        <p><strong>Cédula:</strong> <span id="rev-cedula"></span></p>
+
+        <h4>Datos Profesionales</h4>
+        <p><strong>Ocupación:</strong> <span id="rev-ocupacion"></span></p>
+        <p><strong>Título Profesional:</strong> <span id="rev-titulo"></span></p>
+        <p><strong>Años Experiencia:</strong> <span id="rev-experiencia"></span></p>
+        <p><strong>Género:</strong> <span id="rev-genero"></span></p>
+
+        <h4>Educación</h4>
+        <p><strong>Lugar:</strong> <span id="rev-lugar"></span></p>
+        <p><strong>Título Académico:</strong> <span id="rev-tituloAcad"></span></p>
+        <p><strong>Año Graduación:</strong> <span id="rev-graduacion"></span></p>
+
+        <h4>Cuenta</h4>
+        <p><strong>Correo:</strong> <span id="rev-correo"></span></p>
+        <p><strong>Contraseña:</strong> <span id="rev-password"></span></p>
+      </div>
+    </div>
+
+    <!-- Navegación -->
+    <div class="form-navigation">
+      <button type="button" id="prevBtn" (click)="prevStep()">Anterior</button>
+      <button type="button" id="nextBtn" (click)="nextStep()">Siguiente</button>
+    </div>
+  </form>
+</div>
