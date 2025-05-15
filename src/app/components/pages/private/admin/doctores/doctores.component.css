@@ -1,0 +1,156 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.form-wrapper {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  border-radius: 16px;
+  padding: 30px 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.step-header::before {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background-color: #ccc;
+  z-index: 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  flex: 1;
+  position: relative;
+}
+
+.circle {
+  background: #ccc;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  z-index: 2;
+}
+
+.step.active .circle {
+  background-color: #28a745;
+}
+
+.step span {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #444;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-step {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-step.active {
+  display: flex;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+input, select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  border-color: #28a745;
+  outline: none;
+  box-shadow: 0 0 3px #28a74544;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+#prevBtn {
+  background-color: #6c757d;
+}
+
+#prevBtn:hover {
+  background-color: #5a6268;
+}
+
+.review-section {
+  background: #f1f1f1;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.review-section h4 {
+  margin-top: 15px;
+  color: #28a745;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.review-section p {
+  margin: 5px 0;
+}
