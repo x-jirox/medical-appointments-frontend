@@ -8,6 +8,23 @@ import { Component, OnInit } from '@angular/core';
 export class DoctoresComponent implements OnInit {
   currentStep = 0;
 
+  // Mapeo entre el atributo 'name' del input y el id del span para mostrar revisión
+  private fieldMap: { [key: string]: string } = {
+    nombreCompleto: 'rev-nombreCompleto',
+    fechaNacimiento: 'rev-fechaNacimiento',
+    cedula: 'rev-cedula',
+    telefono: 'rev-telefono',
+    especialidad: 'rev-especialidad',
+    cedulaProfesionales: 'rev-cedulaProfesionales',
+    universidad: 'rev-universidad',
+    aniosExperiencia: 'rev-aniosExperiencia',
+    copiaTitulo: 'rev-copiaTitulo',
+    copiaCedula: 'rev-copiaCedula',
+    foto: 'rev-foto',
+    email: 'rev-email',
+    password: 'rev-password'
+  };
+
   ngOnInit() {
     this.showStep(this.currentStep);
   }
@@ -32,21 +49,25 @@ export class DoctoresComponent implements OnInit {
     const steps = document.querySelectorAll('.form-step');
     const currentInputs = steps[this.currentStep].querySelectorAll('input, select');
 
+    // Validación HTML5 nativa para todos los inputs del paso actual
     for (let i = 0; i < currentInputs.length; i++) {
       const input = currentInputs[i] as HTMLInputElement;
       if (!input.checkValidity()) {
         input.reportValidity();
-        return;
+        return; // si falla validación, no avanza
       }
     }
 
+    // Si está a punto de ir al paso de revisión, llena el resumen
     if (this.currentStep === steps.length - 2) {
       this.fillReview();
     }
 
+    // En el último paso, se debería enviar la solicitud al backend
     if (this.currentStep === steps.length - 1) {
-      alert("Doctor registrado con éxito.");
-      return;
+      // Aquí puedes preparar el objeto con los datos y hacer la llamada HTTP
+      this.submitForm();
+      return; // detener avance
     }
 
     this.currentStep++;
@@ -61,17 +82,47 @@ export class DoctoresComponent implements OnInit {
   }
 
   fillReview() {
-    const inputs = document.querySelectorAll('input, select');
-    const ids = [
-      'rev-nombre', 'rev-apellido', 'rev-nacimiento', 'rev-cedula',
-      'rev-ocupacion', 'rev-titulo', 'rev-experiencia', 'rev-genero',
-      'rev-lugar', 'rev-tituloAcad', 'rev-graduacion',
-      'rev-correo', 'rev-password'
-    ];
-
-    inputs.forEach((input, index) => {
-      const span = document.getElementById(ids[index]);
-      if (span) span.textContent = (input as HTMLInputElement).value;
+    // Por cada campo mapeado, busca input por 'name' y actualiza el span con el id correspondiente
+    Object.entries(this.fieldMap).forEach(([name, spanId]) => {
+      const input = document.querySelector(`[name="${name}"]`) as HTMLInputElement;
+      const span = document.getElementById(spanId);
+      if (input && span) {
+        if (input.type === 'file') {
+          span.textContent = input.files?.length ? input.files[0].name : 'No adjuntado';
+        } else {
+          span.textContent = input.value;
+        }
+      }
     });
+  }
+
+  submitForm() {
+    // Ejemplo: recolectar datos del formulario para enviar al backend
+    const formData = new FormData();
+
+    Object.keys(this.fieldMap).forEach(name => {
+      const input = document.querySelector(`[name="${name}"]`) as HTMLInputElement;
+      if (input) {
+        if (input.type === 'file') {
+          if (input.files?.length) {
+            formData.append(name, input.files[0]);
+          }
+        } else {
+          formData.append(name, input.value);
+        }
+      }
+    });
+
+    // Aquí harías la llamada HTTP para enviar los datos
+    // Ejemplo con HttpClient (requiere inyectar HttpClient en el constructor)
+    // this.http.post('/api/doctores', formData).subscribe(response => {
+    //   alert('Doctor registrado con éxito.');
+    //   // Opcional: resetear formulario o navegar a otra página
+    // }, error => {
+    //   alert('Error al registrar doctor, intente de nuevo.');
+    // });
+
+    // Por ahora solo un alert para simular éxito
+    alert('Doctor registrado con éxito.');
   }
 }
