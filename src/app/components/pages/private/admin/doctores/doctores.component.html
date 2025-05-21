@@ -5,46 +5,38 @@
   <div class="step-header">
     <div class="step active"><div class="circle"><i class="fas fa-user"></i></div><span>Personal</span></div>
     <div class="step"><div class="circle"><i class="fas fa-briefcase-medical"></i></div><span>Profesional</span></div>
-    <div class="step"><div class="circle"><i class="fas fa-graduation-cap"></i></div><span>Educación</span></div>
-    <div class="step"><div class="circle"><i class="fas fa-envelope"></i></div><span>Cuenta</span></div>
+    <div class="step"><div class="circle"><i class="fas fa-file-alt"></i></div><span>Documentos</span></div>
+    <div class="step"><div class="circle"><i class="fas fa-lock"></i></div><span>Cuenta</span></div>
     <div class="step"><div class="circle"><i class="fas fa-eye"></i></div><span>Revisión</span></div>
   </div>
 
   <form class="form-content">
-    <!-- Paso 1 -->
+    <!-- Paso 1: Datos Personales -->
     <div class="form-step active">
-      <div class="input-group"><label>Nombre</label><input type="text" required /></div>
-      <div class="input-group"><label>Apellido</label><input type="text" required /></div>
-      <div class="input-group"><label>Fecha de nacimiento</label><input type="date" required /></div>
+      <div class="input-group"><label>Nombre Completo</label><input type="text" required /></div>
+      <div class="input-group"><label>Correo Electrónico</label><input type="email" required /></div>
+      <div class="input-group"><label>Fecha de Nacimiento</label><input type="date" required /></div>
       <div class="input-group"><label>Cédula</label><input type="text" required /></div>
+      <div class="input-group"><label>Teléfono</label><input type="text" required /></div>
     </div>
 
-    <!-- Paso 2 -->
+    <!-- Paso 2: Datos Profesionales -->
     <div class="form-step">
-      <div class="input-group"><label>Ocupación</label><input type="text" required /></div>
-      <div class="input-group"><label>Título profesional</label><input type="text" required /></div>
-      <div class="input-group"><label>Años de experiencia</label><input type="number" min="0" required /></div>
-      <div class="input-group">
-        <label>Género</label>
-        <select required>
-          <option value="">Seleccione</option>
-          <option>Masculino</option>
-          <option>Femenino</option>
-          <option>Otro</option>
-        </select>
-      </div>
+      <div class="input-group"><label>Especialidad</label><input type="text" required /></div>
+      <div class="input-group"><label>Cédula Profesional</label><input type="text" required /></div>
+      <div class="input-group"><label>Universidad</label><input type="text" required /></div>
+      <div class="input-group"><label>Años de Experiencia</label><input type="number" min="0" required /></div>
     </div>
 
-    <!-- Paso 3 -->
+    <!-- Paso 3: Documentos -->
     <div class="form-step">
-      <div class="input-group"><label>Lugar de educación</label><input type="text" required /></div>
-      <div class="input-group"><label>Título académico</label><input type="text" required /></div>
-      <div class="input-group"><label>Año de graduación</label><input type="number" min="1900" max="2100" required /></div>
+      <div class="input-group"><label>Copia de Título</label><input type="file" required /></div>
+      <div class="input-group"><label>Copia de Cédula</label><input type="file" required /></div>
+      <div class="input-group"><label>Foto</label><input type="file" required /></div>
     </div>
 
-    <!-- Paso 4 -->
+    <!-- Paso 4: Cuenta -->
     <div class="form-step">
-      <div class="input-group"><label>Correo electrónico</label><input type="email" required /></div>
       <div class="input-group"><label>Contraseña</label><input type="password" required /></div>
     </div>
 
@@ -53,24 +45,24 @@
       <h3>Revisar Datos</h3>
       <div class="review-section">
         <h4>Datos Personales</h4>
-        <p><strong>Nombre:</strong> <span id="rev-nombre"></span></p>
-        <p><strong>Apellido:</strong> <span id="rev-apellido"></span></p>
-        <p><strong>Fecha Nacimiento:</strong> <span id="rev-nacimiento"></span></p>
+        <p><strong>Nombre Completo:</strong> <span id="rev-nombreCompleto"></span></p>
+        <p><strong>Email:</strong> <span id="rev-email"></span></p>
+        <p><strong>Fecha de Nacimiento:</strong> <span id="rev-fechaNacimiento"></span></p>
         <p><strong>Cédula:</strong> <span id="rev-cedula"></span></p>
+        <p><strong>Teléfono:</strong> <span id="rev-telefono"></span></p>
 
         <h4>Datos Profesionales</h4>
-        <p><strong>Ocupación:</strong> <span id="rev-ocupacion"></span></p>
-        <p><strong>Título Profesional:</strong> <span id="rev-titulo"></span></p>
-        <p><strong>Años Experiencia:</strong> <span id="rev-experiencia"></span></p>
-        <p><strong>Género:</strong> <span id="rev-genero"></span></p>
+        <p><strong>Especialidad:</strong> <span id="rev-especialidad"></span></p>
+        <p><strong>Cédula Profesional:</strong> <span id="rev-cedulaProfesionales"></span></p>
+        <p><strong>Universidad:</strong> <span id="rev-universidad"></span></p>
+        <p><strong>Años de Experiencia:</strong> <span id="rev-aniosExperiencia"></span></p>
 
-        <h4>Educación</h4>
-        <p><strong>Lugar:</strong> <span id="rev-lugar"></span></p>
-        <p><strong>Título Académico:</strong> <span id="rev-tituloAcad"></span></p>
-        <p><strong>Año Graduación:</strong> <span id="rev-graduacion"></span></p>
+        <h4>Documentos</h4>
+        <p><strong>Copia de Título:</strong> <span id="rev-copiaTitulo"></span></p>
+        <p><strong>Copia de Cédula:</strong> <span id="rev-copiaCedula"></span></p>
+        <p><strong>Foto:</strong> <span id="rev-foto"></span></p>
 
         <h4>Cuenta</h4>
-        <p><strong>Correo:</strong> <span id="rev-correo"></span></p>
         <p><strong>Contraseña:</strong> <span id="rev-password"></span></p>
       </div>
     </div>
