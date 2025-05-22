@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { AUTH_TOKEN_KEY, USER_ROLE_KEY, UserRole } from './auth.constants';
+import { environment } from '@envs/environment'
 
 /**
  * Servicio responsable de la autenticación del usuario,
@@ -13,7 +14,6 @@ import { AUTH_TOKEN_KEY, USER_ROLE_KEY, UserRole } from './auth.constants';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080';
   private token: string | null = null;
   private role: UserRole | null = null;
 
@@ -27,7 +27,7 @@ export class AuthService {
    * @param credentials Credenciales del usuario (email, password)
    */
   login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials);
+    return this.http.post<any>(`${environment.API_URL}/login`, credentials);
   }
 
   /**
@@ -35,7 +35,7 @@ export class AuthService {
    * @param user Datos del usuario a registrar
    */
   register(user: { names: string; email: string; password: string; phone?: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/register`, user).pipe(
+    return this.http.post<any>(`${environment.API_URL}/register`, user).pipe(
       catchError(this.handleError)
     );
   }
