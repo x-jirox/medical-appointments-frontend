@@ -1,32 +1,44 @@
-import { Component, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  ElementRef,
+  Renderer2
+} from '@angular/core';
 import { AuthService } from 'src/app/shared/authentication/auth.service';
-import { MessageService } from 'primeng/api'; // Importa el servicio para mostrar toasts
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
+export class SidebarComponent implements AfterViewInit, OnDestroy {
+  @Output() toggleSidebar = new EventEmitter<boolean>();
+  private listeners: (() => void)[] = [];
+  private isCollapsed = false;
+  userRole: string | null = null;
+  menuItems: any[] = [];
 
-export class SidebarComponent implements AfterViewInit {
-  @Output() toggleSidebar = new EventEmitter<boolean>(); // Evento para alternar la visibilidad de la barra lateral
-  private isCollapsed = false; // Estado de la barra lateral (colapsada o expandida)
-  userRole: string | null = null; // Variable para almacenar el rol del usuario
-  menuItems: any[] = []; // Arreglo para almacenar los elementos del menú
-
-  constructor(private authService: AuthService,private messageService: MessageService /* Inyecta MessageService*/) {
+  constructor(
+    private elRef: ElementRef,
+    private renderer: Renderer2,
+    private authService: AuthService,
+    private messageService: MessageService
+  ) {
     this.userRole = this.authService.getRole()?.toLowerCase() ?? null;
-    this.setMenuItems();  // Establecer los elementos del menú según el rol
+    this.setMenuItems();
   }
 
-  // Método para configurar los elementos del menú según el rol del usuario
   setMenuItems(): void {
     switch (this.userRole) {
       case 'patient':
         this.menuItems = [
           { label: 'Dashboard', route: '/patient/dashboard', icon: 'dashboard' },
           { label: 'Medical History', route: '/patient/medical-history', icon: 'history' },
-          { label: 'Appointments', route: '/patient/appointments', icon: 'schedule' },
+          { label: 'Appointments', route: '/patient/appointments', icon: 'schedule' }
         ];
         break;
       case 'doctor':
@@ -36,52 +48,74 @@ export class SidebarComponent implements AfterViewInit {
           { label: 'Medical History', route: '/doctor/medical-history', icon: 'history' }
         ];
         break;
-      case 'admin':
-        this.menuItems = [
-          { label: 'Dashboard', route: '/admin/dashboard', icon: 'dashboard' },
-          { label: 'Doctors', route: '/admin/doctores', icon: 'supervised_user_circle' }
-        ];
-        break;
+   case 'admin':
+      this.menuItems = [
+        { label: 'Dashboard', route: '/admin/dashboard', icon: 'dashboard' },
+        {
+          label: 'Doctors',
+          icon: 'supervised_user_circle',
+          children: [
+            { label: 'All Doctors', route: '/admin/doctors/list-doctors' },
+            { label: 'Add Doctor', route: '/admin/doctors/create-doctors' }
+          ]
+        }
+      ];
+      break;
       default:
         this.menuItems = [];
         break;
     }
   }
 
-  // Método para abrir/cerrar el menú desplegable
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
+    const dropdownToggles = this.elRef.nativeElement.querySelectorAll('.dropdown-toggle');
+    const sidebarToggles = this.elRef.nativeElement.querySelectorAll('.sidebar-toggler, .sidebar-menu-button');
+
     const toggleDropdown = (dropdown: HTMLElement, menu: HTMLElement, isOpen: boolean) => {
-      dropdown.classList.toggle("open", isOpen);
-      menu.style.height = isOpen ? `${menu.scrollHeight}px` : '0';
+      dropdown.classList.toggle('open', isOpen);
+      this.renderer.setStyle(menu, 'height', isOpen ? `${menu.scrollHeight}px` : '0');
     };
 
     const closeAllDropdowns = () => {
-      document.querySelectorAll<HTMLElement>(".dropdown-container.open").forEach((openDropdown) => {
-        toggleDropdown(openDropdown, openDropdown.querySelector<HTMLElement>(".dropdown-menu")!, false);
+      const openDropdowns = this.elRef.nativeElement.querySelectorAll('.dropdown-container.open');
+      openDropdowns.forEach((openDropdown: HTMLElement) => {
+        const menu = openDropdown.querySelector('.dropdown-menu') as HTMLElement;
+        toggleDropdown(openDropdown, menu, false);
       });
     };
 
-    // Toggle sidebar
-    document.querySelectorAll<HTMLElement>(".sidebar-toggler, .sidebar-menu-button").forEach((button) => {
-      button.addEventListener("click", () => {
+    dropdownToggles.forEach((toggle: HTMLElement) => {
+      const listener = this.renderer.listen(toggle, 'click', (e: Event) => {
+        e.preventDefault();
+        const dropdown = toggle.closest('.dropdown-container') as HTMLElement;
+        const menu = dropdown.querySelector('.dropdown-menu') as HTMLElement;
+        const isOpen = dropdown.classList.contains('open');
         closeAllDropdowns();
-        const sidebar = document.querySelector<HTMLElement>(".sidebar")!;
-        this.isCollapsed = !sidebar.classList.contains("collapsed");
-        sidebar.classList.toggle("collapsed");
-        this.toggleSidebar.emit(!this.isCollapsed);  // Emitir el estado actualizado
+        toggleDropdown(dropdown, menu, !isOpen);
       });
+      this.listeners.push(listener);
     });
 
-    // Collapse sidebar por defecto en pantallas pequeñas
+    sidebarToggles.forEach((btn: HTMLElement) => {
+      const listener = this.renderer.listen(btn, 'click', () => {
+        closeAllDropdowns();
+        const sidebar = this.elRef.nativeElement.querySelector('.sidebar') as HTMLElement;
+        this.isCollapsed = !sidebar.classList.contains('collapsed');
+        sidebar.classList.toggle('collapsed');
+        this.toggleSidebar.emit(!this.isCollapsed);
+      });
+      this.listeners.push(listener);
+    });
+
+    const sidebar = this.elRef.nativeElement.querySelector('.sidebar') as HTMLElement;
     if (window.innerWidth <= 1024) {
-      document.querySelector<HTMLElement>(".sidebar")!.classList.add("collapsed");
+      sidebar.classList.add('collapsed');
       this.toggleSidebar.emit(false);
     } else {
       this.toggleSidebar.emit(true);
     }
   }
 
-  // Función para devolver el link de perfil según el rol
   getProfileLink(): string {
     switch (this.userRole) {
       case 'patient':
@@ -95,13 +129,16 @@ export class SidebarComponent implements AfterViewInit {
     }
   }
 
-  // Función de logout
-  onLogout(){
-    this.authService.logout(); // Llama al método de logout de AuthService
+  onLogout() {
+    this.authService.logout();
     this.messageService.add({
       severity: 'success',
       summary: 'Logout successful',
-      detail: 'You have successfully logged out.',
+      detail: 'You have successfully logged out.'
     });
+  }
+
+  ngOnDestroy(): void {
+    this.listeners.forEach(unlisten => unlisten());
   }
 }
