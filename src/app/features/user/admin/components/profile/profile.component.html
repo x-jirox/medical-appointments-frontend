@@ -1,1 +1,68 @@
-<p>profile works!</p>
+<div class="profile-container">
+  <div class="profile-card">
+    <!-- Header con imagen y datos básicos -->
+    <div class="profile-header">
+      <div class="profile-img-wrapper">
+        <img
+          src="https://via.placeholder.com/150"
+          alt="Foto de perfil"
+          class="profile-img"
+        />
+        <input type="file" accept="image/*" />
+      </div>
+
+      <div class="profile-info">
+        <h2 class="profile-name">Jiro Tanaka</h2>
+        <p class="profile-role">Administrador</p>
+        <p class="profile-email">jiro.tanaka@example.com</p>
+        <p class="profile-phone">+52 55 1234 5678</p>
+        <p class="profile-status active">Activo</p>
+      </div>
+    </div>
+
+    <!-- Bio o descripción -->
+    <div class="profile-bio">
+      <h3>Descripción</h3>
+      <p>
+        Desarrollador de software apasionado por Angular, TypeScript y nuevas
+        tecnologías. Me encanta crear aplicaciones escalables y con buen diseño.
+      </p>
+    </div>
+
+    <!-- Información adicional: roles, permisos -->
+    <div class="profile-permissions">
+      <h3>Permisos y Roles</h3>
+      <ul>
+        <li>Administrador Global</li>
+        <li>Gestión de Usuarios</li>
+        <li>Acceso a Reportes</li>
+      </ul>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="profile-stats">
+      <h3>Estadísticas</h3>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">124</span>
+          <span class="stat-label">Usuarios gestionados</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">8</span>
+          <span class="stat-label">Proyectos activos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">23</span>
+          <span class="stat-label">Tareas pendientes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Acciones -->
+    <div class="profile-actions">
+      <button class="btn edit-btn">Editar Perfil</button>
+      <button class="btn change-pass-btn">Cambiar Contraseña</button>
+      <button class="btn logout-btn">Cerrar Sesión</button>
+    </div>
+  </div>
+</div>
