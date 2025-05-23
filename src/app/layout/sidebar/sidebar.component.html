@@ -1,0 +1,80 @@
+<!-- Botón de apertura de sidebar (para responsive) -->
+<button class="sidebar-menu-button">
+  <span class="material-symbols-rounded">menu</span>
+</button>
+
+<aside class="sidebar">
+  <!-- Encabezado del sidebar -->
+  <header class="sidebar-header">
+    <a class="header-logo">
+      <img src="../../../../assets/img/dr1.png" alt="App Logo" />
+    </a>
+    <button class="sidebar-toggler">
+      <span class="material-symbols-rounded">chevron_left</span>
+    </button>
+  </header>
+
+  <!-- Navegación principal -->
+  <nav class="sidebar-nav">
+
+    <!-- Navegación principal superior -->
+    <ul class="nav-list primary-nav">
+      <li class="nav-item" *ngFor="let item of menuItems" [ngClass]="{ 'dropdown-container': item.children }">
+
+        <!-- Link principal o dropdown toggle -->
+        <a class="nav-link" [routerLink]="!item.children ? item.route : null"
+          [ngClass]="{ 'dropdown-toggle': item.children }">
+          <span class="material-symbols-rounded">{{ item.icon }}</span>
+          <span class="nav-label">{{ item.label }}</span>
+          <span *ngIf="item.children" class="dropdown-icon material-symbols-rounded">keyboard_arrow_down</span>
+        </a>
+        <!-- Si NO tiene hijos, mostramos solo el label en el dropdown-menu para tooltip -->
+        <ul class="dropdown-menu" *ngIf="!item.children">
+          <li class="nav-item"><a class="nav-link dropdown-title">{{item.label}}</a></li>
+        </ul>
+
+
+        <!-- Dropdown secundario -->
+        <ul class="dropdown-menu" *ngIf="item.children">
+          <li class="nav-item">
+            <a class="nav-links dropdown-title ">{{ item.label }}</a>
+          </li>
+
+          <li class="nav-item" *ngFor="let child of item.children">
+            <a class="nav-link dropdown-link" [routerLink]="child.route">
+              <span class="material-symbols-rounded">{{ child.icon }}</span>
+              <span>{{ child.label }}</span>
+            </a>
+
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Navegación secundaria (perfil y logout) -->
+    <ul class="nav-list secondary-nav">
+      <!-- Perfil -->
+      <li class="nav-item">
+        <a [routerLink]="getProfileLink()" class="nav-link">
+          <span class="material-symbols-rounded">account_circle</span>
+          <span class="nav-label">Profile</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Profile</a></li>
+        </ul>
+      </li>
+
+      <!-- Logout -->
+      <li class="nav-item">
+        <a class="nav-link" (click)="onLogout()">
+          <span class="material-symbols-rounded">logout</span>
+          <span class="nav-label">Sign Out</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-title">Sign out</a></li>
+        </ul>
+      </li>
+    </ul>
+
+  </nav>
+</aside>

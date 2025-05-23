@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="wrapper">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
+      <h2>Register</h2>
+
+      <div class="input-field">
+        <input type="text" name="names" [(ngModel)]="register.names" #names="ngModel" placeholder="Enter your Name"
+          required minlength="3" [class.is-invalid]="names.invalid && (names.dirty || names.touched)"
+          [class.is-valid]="names.valid && (names.dirty || names.touched)" />
+        <div class="invalid-feedback" *ngIf="names.invalid && (names.dirty || names.touched)">
+          El nombre es obligatorio y debe tener mínimo 3 caracteres.
+        </div>
+      </div>
+
+      <div class="input-field">
+        <input type="text" name="phone" [(ngModel)]="register.phone" #phone="ngModel" placeholder="Enter your phone"
+          required pattern="^[0-9]{7,10}$" [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched)"
+          [class.is-valid]="phone.valid && (phone.dirty || phone.touched)" />
+        <div class="invalid-feedback" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+          El teléfono debe tener entre 7 y 10 dígitos numéricos.
+        </div>
+      </div>
+
+      <div class="input-field">
+        <input type="email" name="email" [(ngModel)]="register.email" #email="ngModel" placeholder="Enter your email"
+          required email [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+          [class.is-valid]="email.valid && (email.dirty || email.touched)" />
+        <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
+          Por favor introduce un correo válido.
+        </div>
+      </div>
+
+      <div class="input-field">
+        <input type="password" name="password" [(ngModel)]="register.password" #password="ngModel"
+          placeholder="Enter your password" required minlength="6"
+          [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
+          [class.is-valid]="password.valid && (password.dirty || password.touched)" />
+        <div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
+          La contraseña debe tener mínimo 6 caracteres.
+        </div>
+      </div>
+
+      <div class="input-field">
+        <input type="password" name="confirmPassword" [(ngModel)]="register.confirmPassword" #confirmPassword="ngModel"
+          placeholder="Confirm your password" required minlength="6" [class.is-invalid]="
+            (confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)) || (register.password !== register.confirmPassword && confirmPassword.touched)
+          " [class.is-valid]="
+            confirmPassword.valid && (confirmPassword.dirty || confirmPassword.touched) && register.password === register.confirmPassword
+          " />
+        <div class="invalid-feedback"
+          *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+          Por favor confirma la contraseña.
+        </div>
+        <div class="invalid-feedback" *ngIf="register.password !== register.confirmPassword && confirmPassword.touched">
+          Las contraseñas no coinciden.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid">Register</button>
+
+      <div class="login">
+        <p>Already have an account? <a [routerLink]="['/auth/sign-in']">Log In</a></p>
+      </div>
+    </form>
+  </div>
+</div>

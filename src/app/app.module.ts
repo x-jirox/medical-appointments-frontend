@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/layout/header/header.component';
-import { FooterComponent } from './components/layout/footer/footer.component';
-import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
-import { PublicLayoutComponent } from './components/layout/public-layout/public-layout.component';
-import { PrivateLayoutComponent } from './components/layout/private-layout/private-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { GuestLayoutComponent } from './layout/guest-layout/guest-layout.component';
+import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,8 @@ import { MessageService } from 'primeng/api';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    PublicLayoutComponent,
-    PrivateLayoutComponent,
+    GuestLayoutComponent,
+    UserLayoutComponent,
   ],
   imports: [
     BrowserModule,

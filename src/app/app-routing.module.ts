@@ -1,72 +1,69 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './components/pages/public/not-found/not-found.component';
-import { PublicLayoutComponent } from './components/layout/public-layout/public-layout.component';
-import { PrivateLayoutComponent } from './components/layout/private-layout/private-layout.component';
 import { AuthGuard } from './shared/authentication/auth.guard';
+import { GuestLayoutComponent } from './layout/guest-layout/guest-layout.component';
+import { UserLayoutComponent } from './layout/user-layout/user-layout.component';
+import { NotFoundComponent } from './features/guest/components/not-found/not-found.component';
 
 const routes: Routes = [
-
-  // Rutas publicas
+  // === RUTAS PÚBLICAS ===
   {
     path: '',
-    component: PublicLayoutComponent,
+    component: GuestLayoutComponent,
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('./components/pages/public/public.module').then(m => m.PublicModule),
+          import('./features/guest/guest.module').then(m => m.GuestModule)
       },
       {
         path: 'auth',
         loadChildren: () =>
-          import('./components/auth/auth.module').then(m => m.AuthModule),
+          import('./features/auth/auth.module').then(m => m.AuthModule)
       }
     ]
   },
 
-  // Rutas privadas
+  // === RUTAS PRIVADAS (PROTEGIDAS POR ROL) ===
   {
     path: '',
-    component: PrivateLayoutComponent,
+    component: UserLayoutComponent,
     children: [
       {
         path: 'patient',
         loadChildren: () =>
-          import('./components/pages/private/patient/patient.module').then(m => m.PatientModule),
-        canActivate: [AuthGuard
-        ],
+          import('./features/user/patient/patient.module').then(m => m.PatientModule),
+        canActivate: [AuthGuard],
         data: { role: 'PATIENT' }
       },
       {
         path: 'doctor',
         loadChildren: () =>
-          import('./components/pages/private/doctor/doctor.module').then(m => m.DoctorModule),
+          import('./features/user/doctor/doctor.module').then(m => m.DoctorModule),
         canActivate: [AuthGuard],
         data: { role: 'DOCTOR' }
       },
       {
         path: 'admin',
         loadChildren: () =>
-          import('./components/pages/private/admin/admin.module').then(m => m.AdminModule),
+          import('./features/user/admin/admin.module').then(m => m.AdminModule),
         canActivate: [AuthGuard],
         data: { role: 'ADMIN' }
       }
     ]
   },
 
-  //Manejo de errores
-  { path: '404', component: NotFoundComponent }, // Página 404
-  { path: '**', redirectTo: '/404' } // Redirige a la página 404 si no encuentra la ruta
+  // === MANEJO DE ERRORES ===
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules // Esto precarga todos los módulos perezosos
-  })
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules // Mejora el rendimiento precargando módulos
+    })
   ],
   exports: [RouterModule]
 })
-
-
 export class AppRoutingModule { }
