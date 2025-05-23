@@ -1,0 +1,48 @@
+<!-- src/app/components/auth/components/sign-in/sign-in.component.html -->
+
+<div class="container">
+  <div class="wrapper">
+    <h2>Iniciar Sesión</h2>
+
+    <form #loginForm="ngForm" (ngSubmit)="onLogin($event, loginForm)" novalidate>
+
+      <!-- Email -->
+      <div class="input-field">
+        <input type="email" name="email" #email="ngModel" [(ngModel)]="credentials.email" required
+          placeholder="Correo electrónico" class="form-control"
+          [ngClass]="{'is-valid': email.valid && email.touched, 'is-invalid': email.invalid && email.touched}" />
+        <div *ngIf="email.invalid && email.touched" class="invalid-feedback">
+          <small *ngIf="email.errors?.['required']">El correo es obligatorio.</small>
+          <small *ngIf="email.errors?.['email']">El correo no tiene un formato válido.</small>
+        </div>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="input-field">
+        <input type="password" name="password" #password="ngModel" [(ngModel)]="credentials.password" required
+          placeholder="Contraseña" class="form-control"
+          [ngClass]="{'is-valid': password.valid && password.touched, 'is-invalid': password.invalid && password.touched}" />
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          <small *ngIf="password.errors?.['required']">La contraseña es obligatoria.</small>
+        </div>
+      </div>
+
+      <!-- Recordarme -->
+      <div class="forget">
+        <label>
+          <input type="checkbox" [(ngModel)]="rememberMe" name="remember" />
+          <span>Recuérdame</span>
+        </label>
+        <a [routerLink]="['/auth/recover-password']">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <!-- Botón de envío -->
+      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Ingresar</button>
+
+      <!-- Registro -->
+      <div class="register">
+        <p>¿No tienes una cuenta? <a [routerLink]="['/auth/sign-up']">Regístrate</a></p>
+      </div>
+    </form>
+  </div>
+</div>

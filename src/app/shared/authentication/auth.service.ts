@@ -3,28 +3,36 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { AUTH_TOKEN_KEY, USER_ROLE_KEY, UserRole } from './auth.constants';
-import { environment } from '@envs/environment'
+import { environment } from '@envs/environment';
 
 /**
- * Servicio responsable de la autenticación del usuario,
- * incluyendo login, registro, almacenamiento del token y del rol,
- * y control del estado de sesión.
+ * Servicio de autenticación que gestiona login, registro,
+ * tokens, roles y el estado de sesión del usuario.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class AuthService {
+  // Token y rol almacenados en memoria
   private token: string | null = null;
   private role: UserRole | null = null;
 
-  // Estado reactivo del login
+  // Observable del estado de login
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    // Inicializamos token y rol desde localStorage si existen
+    this.token = localStorage.getItem(AUTH_TOKEN_KEY);
+    this.role = localStorage.getItem(USER_ROLE_KEY) as UserRole | null;
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // API CALLS: Login & Registro
+  // ─────────────────────────────────────────────────────────────
 
   /**
-   * Realiza la petición de login al backend.
-   * @param credentials Credenciales del usuario (email, password)
+   * Envía una solicitud de login al backend.
    */
   login(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post<any>(`${environment.API_URL}/login`, credentials);
@@ -32,26 +40,31 @@ export class AuthService {
 
   /**
    * Registra un nuevo usuario en el backend.
-   * @param user Datos del usuario a registrar
    */
-  register(user: { names: string; email: string; password: string; phone?: string }): Observable<any> {
-    return this.http.post<any>(`${environment.API_URL}/register`, user).pipe(
-      catchError(this.handleError)
-    );
+  register(user: {
+    names: string;
+    email: string;
+    password: string;
+    phone?: string;
+  }): Observable<any> {
+    return this.http
+      .post<any>(`${environment.API_URL}/register`, user)
+      .pipe(catchError(this.handleError));
   }
 
-  // ===== TOKEN =====
+  // ─────────────────────────────────────────────────────────────
+  // TOKEN MANAGEMENT
+  // ─────────────────────────────────────────────────────────────
 
   /**
-   * Verifica si ya existe un token en localStorage.
+   * Verifica si ya existe un token almacenado.
    */
   private hasToken(): boolean {
     return !!localStorage.getItem(AUTH_TOKEN_KEY);
   }
 
   /**
-   * Almacena el token en memoria y localStorage.
-   * @param token Token JWT recibido del backend
+   * Guarda el token en memoria y localStorage.
    */
   setToken(token: string): void {
     this.token = token;
@@ -60,17 +73,18 @@ export class AuthService {
   }
 
   /**
-   * Devuelve el token actual del usuario.
+   * Obtiene el token actual del usuario.
    */
   getToken(): string | null {
     return this.token || localStorage.getItem(AUTH_TOKEN_KEY);
   }
 
-  // ===== ROLE =====
+  // ─────────────────────────────────────────────────────────────
+  // ROLE MANAGEMENT
+  // ─────────────────────────────────────────────────────────────
 
   /**
-   * Almacena el rol del usuario.
-   * @param role Rol del usuario ('patient', 'doctor', etc.)
+   * Guarda el rol del usuario.
    */
   setRole(role: UserRole): void {
     this.role = role;
@@ -78,30 +92,32 @@ export class AuthService {
   }
 
   /**
-   * Devuelve el rol actual del usuario.
+   * Obtiene el rol actual del usuario.
    */
   getRole(): UserRole | null {
     return this.role || (localStorage.getItem(USER_ROLE_KEY) as UserRole | null);
   }
 
-  // ===== STATE =====
+  // ─────────────────────────────────────────────────────────────
+  // AUTH STATE MANAGEMENT
+  // ─────────────────────────────────────────────────────────────
 
   /**
-   * Verifica si el usuario está autenticado.
+   * Verifica si el usuario está logueado.
    */
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
 
   /**
-   * Observable para saber si el usuario está logueado (modo reactivo).
+   * Observable para detectar cambios en el estado de login.
    */
   get isLoggedIn$(): Observable<boolean> {
     return this.isLoggedInSubject.asObservable();
   }
 
   /**
-   * Cierra la sesión del usuario y limpia todos los datos.
+   * Cierra la sesión, limpia los datos y redirige al login.
    */
   logout(): void {
     this.clearAuthData();
@@ -109,7 +125,7 @@ export class AuthService {
   }
 
   /**
-   * Limpia token, rol y estado de sesión.
+   * Limpia token, rol y estado de login.
    */
   private clearAuthData(): void {
     this.token = null;
@@ -119,10 +135,16 @@ export class AuthService {
     this.isLoggedInSubject.next(false);
   }
 
+  // ─────────────────────────────────────────────────────────────
+  // ERROR HANDLING
+  // ─────────────────────────────────────────────────────────────
+
   /**
-   * Manejo de errores de autenticación.
+   * Maneja errores HTTP de forma centralizada.
    */
   private handleError(error: HttpErrorResponse) {
-    return throwError(() => new Error('An error occurred during authentication'));
+    const message =
+      error.error?.message || 'Ocurrió un error durante la autenticación.';
+    return throwError(() => new Error(message));
   }
 }
